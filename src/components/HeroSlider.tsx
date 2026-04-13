@@ -65,7 +65,7 @@ const HeroSlider = () => {
               alt={slide.title}
               className="w-full h-full object-cover"
               width={1920}
-              height={800}
+              height={700}
               {...(i === 0 ? {} : { loading: "lazy" as const })}
             />
             {/* Overlay */}
