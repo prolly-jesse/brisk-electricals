@@ -13,7 +13,12 @@ import {
 } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 
-// --- TUNGSTEN CATALOG DATA WITH LOCAL ASSETS ---
+// --- 1. EXPLICIT IMAGE IMPORTS ---
+// Vite needs these imported as variables to resolve the correct path
+import imgDemo1 from "@/assets/imgdemo.jpg";
+import imgDemo2 from "@/assets/imgdemo2.jpg";
+
+// --- TUNGSTEN CATALOG DATA ---
 const catalogData = [
   {
     name: "Instant Showers",
@@ -24,22 +29,22 @@ const catalogData = [
           {
             name: "Vezor Tankless Salty Water Heater + Rainshower",
             price: 22500,
-            image: "@/assets/imgdemo.jpg",
+            image: imgDemo1,
           },
           {
             name: "White Cesium T02 Tankless Heater with Pump",
             price: 15500,
-            image: "@/assets/imgdemo2.jpg",
+            image: imgDemo2,
           },
           {
             name: "Vezor Salty Water Heater + Square Showerhead",
             price: 22000,
-            image: "@/assets/imgdemo.jpg",
+            image: imgDemo1,
           },
           {
             name: "Vezor Black Rainshower Salty Water Edition",
             price: 25500,
-            image: "@/assets/imgdemo2.jpg",
+            image: imgDemo2,
           },
         ],
       },
@@ -51,25 +56,17 @@ const catalogData = [
       {
         name: "Chandeliers & Pendants",
         products: [
-          {
-            name: "Modern Ring LED Chandelier",
-            price: 14200,
-            image: "@/assets/imgdemo.jpg",
-          },
+          { name: "Modern Ring LED Chandelier", price: 14200, image: imgDemo1 },
           {
             name: "Modern Geometric Pendant Light",
             price: 8500,
-            image: "@/assets/imgdemo2.jpg",
+            image: imgDemo2,
           },
-          {
-            name: "7 Head LED Low Ceiling Lamp",
-            price: 9500,
-            image: "@/assets/imgdemo.jpg",
-          },
+          { name: "7 Head LED Low Ceiling Lamp", price: 9500, image: imgDemo1 },
           {
             name: "3 Light Wood Color Resin Pendant",
             price: 10500,
-            image: "@/assets/imgdemo2.jpg",
+            image: imgDemo2,
           },
         ],
       },
@@ -84,22 +81,22 @@ const catalogData = [
           {
             name: "Ultra Thin 45A DP Shower Switch VIP",
             price: 650,
-            image: "@/assets/imgdemo.jpg",
+            image: imgDemo1,
           },
           {
             name: "Luxury Two Tone Black Cooker Socket",
             price: 1200,
-            image: "@/assets/imgdemo2.jpg",
+            image: imgDemo2,
           },
           {
             name: "Big Button 3-Gang Luxury Switch",
             price: 300,
-            image: "@/assets/imgdemo.jpg",
+            image: imgDemo1,
           },
           {
             name: "Waterproof Twin Outdoor Socket",
             price: 1800,
-            image: "@/assets/imgdemo2.jpg",
+            image: imgDemo2,
           },
         ],
       },
@@ -110,11 +107,10 @@ const catalogData = [
 const ShopSection = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
-  const { items, addItem, removeItem, updateQty, clearCart, total, count } =
-    useCart();
+  const { items, addItem, removeItem, updateQty, total, count } = useCart();
 
-  const handleAdd = (name: string, price: number) => {
-    addItem({ name, price, image: "" }, 1);
+  const handleAdd = (name: string, price: number, image: string) => {
+    addItem({ name, price, image }, 1);
     setCartOpen(true);
   };
 
@@ -268,7 +264,7 @@ const ShopSection = () => {
   );
 };
 
-// --- ULTRA COMPACT PRODUCT CARD ---
+// --- PRODUCT CARD COMPONENT ---
 const ProductCard = ({ product, onAdd }: { product: any; onAdd: any }) => (
   <div className="group bg-white rounded-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
     <div className="aspect-square bg-[#fbfbfb] overflow-hidden p-1.5 relative flex items-center justify-center border-b border-gray-50">
@@ -289,7 +285,7 @@ const ProductCard = ({ product, onAdd }: { product: any; onAdd: any }) => (
           KSh {product.price.toLocaleString()}
         </span>
         <button
-          onClick={() => onAdd(product.name, product.price)}
+          onClick={() => onAdd(product.name, product.price, product.image)}
           className="bg-blue-600 text-white p-1.5 rounded-sm hover:bg-black active:scale-90 transition-all shadow-sm shrink-0"
         >
           <ShoppingCart className="w-3 h-3" />
