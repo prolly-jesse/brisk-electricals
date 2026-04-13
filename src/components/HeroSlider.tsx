@@ -48,7 +48,7 @@ const HeroSlider = () => {
   }, [next]);
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 py-4">
+    <section className="px-4 sm:px-6 lg:px-8 py-2">
       <div className="relative w-[94%] mx-auto mt-4 h-[22vh] md:h-[260px] lg:h-[300px] overflow-hidden rounded-2xl shadow-md bg-muted">
         {/* Slides */}
         {slides.map((slide, i) => (
