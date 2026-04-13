@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 
-// --- FULL TUNGSTEN DATASET ---
+// --- TUNGSTEN CATALOG DATA WITH LOCAL ASSETS ---
 const catalogData = [
   {
     name: "Instant Showers",
@@ -24,26 +24,22 @@ const catalogData = [
           {
             name: "Vezor Tankless Salty Water Heater + Rainshower",
             price: 22500,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/vezor-salty.jpg",
+            image: "@/assets/imgdemo.jpg",
           },
           {
             name: "White Cesium T02 Tankless Heater with Pump",
             price: 15500,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/cesium.jpg",
+            image: "@/assets/imgdemo2.jpg",
           },
           {
             name: "Vezor Salty Water Heater + Square Showerhead",
             price: 22000,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/vezor-square.jpg",
+            image: "@/assets/imgdemo.jpg",
           },
           {
             name: "Vezor Black Rainshower Salty Water Edition",
             price: 25500,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/vezor-black.jpg",
+            image: "@/assets/imgdemo2.jpg",
           },
         ],
       },
@@ -58,26 +54,22 @@ const catalogData = [
           {
             name: "Modern Ring LED Chandelier",
             price: 14200,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/ring-chan.jpg",
+            image: "@/assets/imgdemo.jpg",
           },
           {
             name: "Modern Geometric Pendant Light",
             price: 8500,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/geo-pendant.jpg",
+            image: "@/assets/imgdemo2.jpg",
           },
           {
             name: "7 Head LED Low Ceiling Lamp",
             price: 9500,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/low-ceiling.jpg",
+            image: "@/assets/imgdemo.jpg",
           },
           {
             name: "3 Light Wood Color Resin Pendant",
             price: 10500,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/wood-pendant.jpg",
+            image: "@/assets/imgdemo2.jpg",
           },
         ],
       },
@@ -92,26 +84,22 @@ const catalogData = [
           {
             name: "Ultra Thin 45A DP Shower Switch VIP",
             price: 650,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/vip-switch.jpg",
+            image: "@/assets/imgdemo.jpg",
           },
           {
             name: "Luxury Two Tone Black Cooker Socket",
             price: 1200,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/cooker-socket.jpg",
+            image: "@/assets/imgdemo2.jpg",
           },
           {
             name: "Big Button 3-Gang Luxury Switch",
             price: 300,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/3gang.jpg",
+            image: "@/assets/imgdemo.jpg",
           },
           {
             name: "Waterproof Twin Outdoor Socket",
             price: 1800,
-            image:
-              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/waterproof-socket.jpg",
+            image: "@/assets/imgdemo2.jpg",
           },
         ],
       },
@@ -283,8 +271,7 @@ const ShopSection = () => {
 // --- ULTRA COMPACT PRODUCT CARD ---
 const ProductCard = ({ product, onAdd }: { product: any; onAdd: any }) => (
   <div className="group bg-white rounded-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
-    {/* Image Container with tight padding */}
-    <div className="aspect-square bg-[#fbfbfb] overflow-hidden p-2 relative flex items-center justify-center border-b border-gray-50">
+    <div className="aspect-square bg-[#fbfbfb] overflow-hidden p-1.5 relative flex items-center justify-center border-b border-gray-50">
       <img
         src={product.image}
         alt={product.name}
@@ -292,7 +279,6 @@ const ProductCard = ({ product, onAdd }: { product: any; onAdd: any }) => (
       />
     </div>
 
-    {/* Tightened Info Section */}
     <div className="p-1.5 sm:p-2 flex flex-col flex-1">
       <h3 className="text-[10px] sm:text-[11px] font-bold text-gray-700 line-clamp-2 leading-[1.2] min-h-[1.5rem] mb-1">
         {product.name}
