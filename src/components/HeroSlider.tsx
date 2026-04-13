@@ -49,7 +49,7 @@ const HeroSlider = () => {
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-2">
-      <div className="relative w-[94%] mx-auto mt-4 h-[22vh] md:h-[260px] lg:h-[300px] overflow-hidden rounded-2xl shadow-md bg-muted">
+      <div className="relative w-[94%] mx-auto mt-2 h-[22vh] md:h-[300px] lg:h-[300px] overflow-hidden rounded-2xl shadow-md bg-muted">
         {/* Slides */}
         {slides.map((slide, i) => (
           <div
@@ -61,7 +61,7 @@ const HeroSlider = () => {
               src={slide.image}
               alt={slide.title}
               // h- values now perfectly match the parent container
-              className="w-full h-full object-cover object-center rounded-2xl"
+              className="w-full h-full object-cover object-center object-contain  rounded-2xl"
               width={1920}
               height={700}
               {...(i === 0 ? {} : { loading: "lazy" as const })}
