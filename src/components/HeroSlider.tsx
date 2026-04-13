@@ -49,7 +49,7 @@ const HeroSlider = () => {
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-4">
-      <div className="relative w-full h-[35vh] sm:h-[40vh] overflow-hidden rounded-2xl shadow-md">
+      <div className="relative w-[94%] mx-auto mt-4 h-[35vh] md:h-[500px] overflow-hidden rounded-2xl shadow-lg bg-muted">
         {/* Slides */}
         {slides.map((slide, i) => (
           <div
@@ -60,13 +60,13 @@ const HeroSlider = () => {
             <img
               src={slide.image}
               alt={slide.title}
-              className="w-full h-[35vh] md:h-[500px] object-cover object-center"
+              className="w-full h-full md:h-[500px] object-cover object-center"
               width={1920}
               height={700}
               {...(i === 0 ? {} : { loading: "lazy" as const })}
             />
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent md:from-black/40" />
 
             {/* Text */}
             <div
