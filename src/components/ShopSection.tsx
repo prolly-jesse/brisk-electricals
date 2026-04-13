@@ -349,18 +349,18 @@ const ShopSection = () => {
         </div>
       )}
 
-      {/* --- CART DRAWER WITH "X" CLOSE --- */}
+      {/* --- CART DRAWER WITH FIXED POSITIONING --- */}
       {cartOpen && (
         <div className="fixed inset-0 z-50 flex justify-end">
-          {/* Backdrop Overlay */}
+          {/* Backdrop Overlay - Always clickable to close */}
           <div
             className="absolute inset-0 bg-black/30 backdrop-blur-[2px] cursor-pointer"
             onClick={() => setCartOpen(false)}
           />
 
           <div className="relative w-full max-w-[340px] bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
-            {/* Header with X Close */}
-            <div className="p-4 border-b flex items-center justify-between bg-white sticky top-0 z-10">
+            {/* Header with X Close - Added mt-16 to clear your Navbar */}
+            <div className="p-4 border-b flex items-center justify-between bg-white sticky top-0 z-10 mt-16 md:mt-20">
               <div className="flex items-center gap-2">
                 <ShoppingCart className="w-4 h-4 text-blue-600" />
                 <h3 className="font-black text-xs uppercase tracking-widest">
@@ -372,6 +372,7 @@ const ShopSection = () => {
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors group"
                 aria-label="Close Cart"
               >
+                {/* This X should now be visible below the Navbar */}
                 <X className="w-5 h-5 text-gray-400 group-hover:text-black" />
               </button>
             </div>
@@ -384,12 +385,6 @@ const ShopSection = () => {
                   <p className="text-[10px] font-black uppercase tracking-[0.2em]">
                     Cart is Empty
                   </p>
-                  <button
-                    onClick={() => setCartOpen(false)}
-                    className="mt-4 text-blue-600 text-[9px] font-black uppercase tracking-widest hover:underline"
-                  >
-                    Start Shopping
-                  </button>
                 </div>
               ) : (
                 items.map((item) => (
@@ -408,7 +403,7 @@ const ShopSection = () => {
                     <div className="flex items-center gap-2 bg-gray-50 p-1 rounded">
                       <button
                         onClick={() => updateQty(item.name, -1)}
-                        className="p-1 hover:text-blue-600 transition-colors"
+                        className="p-1 hover:text-blue-600"
                       >
                         <Minus className="w-3 h-3" />
                       </button>
@@ -417,14 +412,14 @@ const ShopSection = () => {
                       </span>
                       <button
                         onClick={() => updateQty(item.name, 1)}
-                        className="p-1 hover:text-blue-600 transition-colors"
+                        className="p-1 hover:text-blue-600"
                       >
                         <Plus className="w-3 h-3" />
                       </button>
                       <div className="w-[1px] h-3 bg-gray-200 mx-1" />
                       <button
                         onClick={() => removeItem(item.name)}
-                        className="text-gray-400 hover:text-red-500 transition-colors"
+                        className="text-gray-400 hover:text-red-500"
                       >
                         <Trash2 className="w-3 h-3" />
                       </button>
@@ -435,7 +430,7 @@ const ShopSection = () => {
             </div>
 
             {/* Footer / Checkout */}
-            <div className="p-4 border-t bg-gray-50 space-y-4">
+            <div className="p-4 border-t bg-gray-50 space-y-4 pb-10">
               <div className="flex justify-between items-end">
                 <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">
                   Total Amount
@@ -447,13 +442,10 @@ const ShopSection = () => {
               <button
                 onClick={checkout}
                 disabled={items.length === 0}
-                className="w-full bg-green-600 disabled:bg-gray-300 text-white py-4 rounded-sm font-black flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.15em] hover:bg-green-700 transition-all shadow-lg active:scale-[0.98]"
+                className="w-full bg-green-600 disabled:bg-gray-300 text-white py-4 rounded-sm font-black flex items-center justify-center gap-3 text-[11px] uppercase tracking-[0.15em] shadow-lg"
               >
                 <MessageCircle className="w-4 h-4" /> Send to WhatsApp
               </button>
-              <p className="text-[8px] text-center text-gray-400 font-bold uppercase tracking-tight">
-                Finalizing this will open WhatsApp to complete payment.
-              </p>
             </div>
           </div>
         </div>
