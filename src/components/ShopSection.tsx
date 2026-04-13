@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import {
   ChevronDown,
   Search,
@@ -7,29 +7,14 @@ import {
   Minus,
   Trash2,
   MessageCircle,
-  Menu,
   X,
   ChevronRight,
+  ArrowLeft,
 } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 
-interface Product {
-  name: string;
-  price: number;
-  image: string;
-}
-
-interface Subcategory {
-  name: string;
-  products: Product[];
-}
-
-interface Category {
-  name: string;
-  subcategories: Subcategory[];
-}
-
-const catalogData: Category[] = [
+// --- FULL TUNGSTEN DATASET ---
+const catalogData = [
   {
     name: "Instant Showers",
     subcategories: [
@@ -37,33 +22,28 @@ const catalogData: Category[] = [
         name: "Salty Water Showers",
         products: [
           {
-            name: "Salty Water Instant Shower – Standard",
-            price: 10500,
+            name: "Vezor Tankless Salty Water Heater + Rainshower",
+            price: 22500,
             image:
-              "https://images.unsplash.com/photo-1585412459212-8def26f7db1f?w=400&h=400&fit=crop",
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/vezor-salty.jpg",
           },
           {
-            name: "Salty Water Instant Shower – Premium",
-            price: 13500,
+            name: "White Cesium T02 Tankless Heater with Pump",
+            price: 15500,
             image:
-              "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=400&h=400&fit=crop",
-          },
-        ],
-      },
-      {
-        name: "Fresh Water Showers",
-        products: [
-          {
-            name: "Fresh Water Instant Shower – Economy",
-            price: 10500,
-            image:
-              "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=400&h=400&fit=crop",
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/cesium.jpg",
           },
           {
-            name: "Fresh Water Instant Shower – Swivel Head",
-            price: 12000,
+            name: "Vezor Salty Water Heater + Square Showerhead",
+            price: 22000,
             image:
-              "https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?w=400&h=400&fit=crop",
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/vezor-square.jpg",
+          },
+          {
+            name: "Vezor Black Rainshower Salty Water Edition",
+            price: 25500,
+            image:
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/vezor-black.jpg",
           },
         ],
       },
@@ -73,31 +53,31 @@ const catalogData: Category[] = [
     name: "Decorative Lights",
     subcategories: [
       {
-        name: "Chandeliers",
+        name: "Chandeliers & Pendants",
         products: [
           {
-            name: "Crystal Chandelier – 6 Arm",
-            price: 18500,
-            image:
-              "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=400&h=400&fit=crop",
-          },
-          {
-            name: "Modern Ring Chandelier LED",
+            name: "Modern Ring LED Chandelier",
             price: 14200,
             image:
-              "https://images.unsplash.com/photo-1507473885765-e6ed057ab6fe?w=400&h=400&fit=crop",
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/ring-chan.jpg",
           },
           {
-            name: "Modern Pendant Ceiling Light",
-            price: 4500,
+            name: "Modern Geometric Pendant Light",
+            price: 8500,
             image:
-              "https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?w=400&h=400&fit=crop",
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/geo-pendant.jpg",
           },
           {
-            name: "Industrial Pendant Light",
-            price: 3800,
+            name: "7 Head LED Low Ceiling Lamp",
+            price: 9500,
             image:
-              "https://images.unsplash.com/photo-1507473885765-e6ed057ab6fe?w=400&h=400&fit=crop",
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/low-ceiling.jpg",
+          },
+          {
+            name: "3 Light Wood Color Resin Pendant",
+            price: 10500,
+            image:
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/wood-pendant.jpg",
           },
         ],
       },
@@ -107,31 +87,31 @@ const catalogData: Category[] = [
     name: "Sockets & Switches",
     subcategories: [
       {
-        name: "VIP Sockets",
+        name: "VIP & Standard",
         products: [
           {
-            name: "13A Single Luxury Glass Gold",
-            price: 850,
+            name: "Ultra Thin 45A DP Shower Switch VIP",
+            price: 650,
             image:
-              "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&h=400&fit=crop",
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/vip-switch.jpg",
           },
           {
-            name: "13A Twin Luxury Glass Gold",
-            price: 1850,
+            name: "Luxury Two Tone Black Cooker Socket",
+            price: 1200,
             image:
-              "https://images.unsplash.com/photo-1544724107-6d5c4caaff30?w=400&h=400&fit=crop",
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/cooker-socket.jpg",
           },
           {
-            name: "Smart Dimmer Switch",
+            name: "Big Button 3-Gang Luxury Switch",
+            price: 300,
+            image:
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/3gang.jpg",
+          },
+          {
+            name: "Waterproof Twin Outdoor Socket",
             price: 1800,
             image:
-              "https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=400&h=400&fit=crop",
-          },
-          {
-            name: "Gang Socket Extension",
-            price: 950,
-            image:
-              "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=400&h=400&fit=crop",
+              "https://www.tungsten.co.ke/wp-content/uploads/2023/11/waterproof-socket.jpg",
           },
         ],
       },
@@ -140,7 +120,7 @@ const catalogData: Category[] = [
 ];
 
 const ShopSection = () => {
-  const [selectedCat, setSelectedCat] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [cartOpen, setCartOpen] = useState(false);
   const { items, addItem, removeItem, updateQty, clearCart, total, count } =
     useCart();
@@ -159,122 +139,128 @@ const ShopSection = () => {
     );
   };
 
+  const currentCategoryData = catalogData.find(
+    (c) => c.name === activeCategory
+  );
+  const allProductsForActive = currentCategoryData
+    ? currentCategoryData.subcategories.flatMap((s) => s.products)
+    : [];
+
   return (
-    <section id="shop" className="py-6 px-4 max-w-7xl mx-auto">
-      {/* Category Sections */}
-      {catalogData.map((cat) => (
-        <div key={cat.name} className="mb-10">
-          {/* Tungsten Style Header */}
-          <div className="flex items-center justify-between mb-6 border-b border-gray-100 pb-2">
-            <div className="relative">
-              <h2 className="text-xl font-bold uppercase tracking-tight text-gray-900">
-                {cat.name}
-              </h2>
-              <div className="absolute -bottom-[9px] left-0 w-12 h-0.5 bg-blue-600"></div>
-            </div>
-            <button className="flex items-center text-blue-600 font-semibold text-sm hover:gap-1 transition-all">
-              VIEW ALL <ChevronRight className="w-4 h-4" />
-            </button>
+    <section id="shop" className="py-1 px-3 max-w-7xl mx-auto min-h-screen">
+      {activeCategory ? (
+        <div className="animate-in fade-in duration-500">
+          <button
+            onClick={() => setActiveCategory(null)}
+            className="flex items-center gap-1 text-gray-400 hover:text-blue-600 mb-3 text-[10px] font-bold uppercase tracking-widest transition-colors"
+          >
+            <ArrowLeft className="w-3 h-3" /> Back Home
+          </button>
+          <div className="relative mb-6">
+            <h2 className="text-lg font-black uppercase tracking-tighter text-gray-900">
+              {activeCategory}
+            </h2>
+            <div className="w-8 h-1 bg-blue-600 mt-1"></div>
           </div>
-
-          {/* 2x2 Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {cat.subcategories
-              .flatMap((s) => s.products)
-              .slice(0, 4)
-              .map((product) => (
-                <div
-                  key={product.name}
-                  className="group bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-md transition-all"
-                >
-                  {/* 1:1 Square Image with Floating Effect */}
-                  <div className="aspect-square bg-[#f9f9f9] overflow-hidden p-4">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  {/* Minimalist Footer */}
-                  <div className="p-3 space-y-2">
-                    <h3 className="text-xs sm:text-sm font-medium text-gray-700 line-clamp-2 h-10">
-                      {product.name}
-                    </h3>
-                    <div className="flex items-center justify-between pt-1">
-                      <span className="font-bold text-gray-900 text-sm sm:text-base">
-                        KSh {product.price.toLocaleString()}
-                      </span>
-                      <button
-                        onClick={() => handleAdd(product.name, product.price)}
-                        className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 active:scale-90 transition-all shadow-sm"
-                      >
-                        <ShoppingCart className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
+            {allProductsForActive.map((product) => (
+              <ProductCard
+                key={product.name}
+                product={product}
+                onAdd={handleAdd}
+              />
+            ))}
           </div>
         </div>
-      ))}
+      ) : (
+        catalogData.map((cat) => (
+          <div key={cat.name} className="mb-6">
+            <div className="flex items-center justify-between mb-3 border-b border-gray-50 pb-1">
+              <div className="relative">
+                <h2 className="text-xs sm:text-sm font-black uppercase tracking-widest text-gray-900">
+                  {cat.name}
+                </h2>
+                <div className="absolute -bottom-[5px] left-0 w-6 h-0.5 bg-blue-600"></div>
+              </div>
+              <button
+                onClick={() => setActiveCategory(cat.name)}
+                className="flex items-center text-blue-600 font-black text-[9px] tracking-widest hover:gap-1 transition-all"
+              >
+                EXPLORE <ChevronRight className="w-3 h-3" />
+              </button>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              {cat.subcategories
+                .flatMap((s) => s.products)
+                .slice(0, 4)
+                .map((product) => (
+                  <ProductCard
+                    key={product.name}
+                    product={product}
+                    onAdd={handleAdd}
+                  />
+                ))}
+            </div>
+          </div>
+        ))
+      )}
 
-      {/* Cart Drawer */}
+      {/* --- CART DRAWER --- */}
       {cartOpen && (
         <div className="fixed inset-0 z-50 flex justify-end">
           <div
-            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/10 backdrop-blur-[2px]"
             onClick={() => setCartOpen(false)}
           />
-          <div className="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right">
+          <div className="relative w-full max-w-[320px] bg-white h-full shadow-2xl flex flex-col animate-in slide-in-from-right">
             <div className="p-4 border-b flex items-center justify-between">
-              <h3 className="font-bold text-lg">Your Cart ({count})</h3>
+              <h3 className="font-black text-sm uppercase tracking-tight">
+                Cart ({count})
+              </h3>
               <button onClick={() => setCartOpen(false)}>
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5" />
               </button>
             </div>
-
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div className="flex-1 overflow-y-auto p-2 space-y-1">
               {items.map((item) => (
                 <div
                   key={item.name}
-                  className="flex items-center justify-between bg-gray-50 p-3 rounded-lg"
+                  className="flex items-center justify-between bg-gray-50 p-2 rounded border border-gray-100"
                 >
-                  <div className="flex-1">
-                    <p className="text-sm font-medium line-clamp-1">
+                  <div className="flex-1 pr-2">
+                    <p className="text-[10px] font-bold line-clamp-1 uppercase text-gray-600">
                       {item.name}
                     </p>
-                    <p className="text-blue-600 font-bold">
+                    <p className="text-blue-600 font-black text-xs">
                       KSh {item.price.toLocaleString()}
                     </p>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => updateQty(item.name, -1)}
-                      className="p-1 border rounded"
+                      className="p-1 border rounded bg-white"
                     >
-                      <Minus className="w-4 h-4" />
+                      <Minus className="w-2.5 h-2.5" />
                     </button>
-                    <span className="font-bold">{item.qty}</span>
+                    <span className="text-[10px] font-black">{item.qty}</span>
                     <button
                       onClick={() => updateQty(item.name, 1)}
-                      className="p-1 border rounded"
+                      className="p-1 border rounded bg-white"
                     >
-                      <Plus className="w-4 h-4" />
+                      <Plus className="w-2.5 h-2.5" />
                     </button>
                     <button
                       onClick={() => removeItem(item.name)}
-                      className="text-red-500"
+                      className="text-red-400 pl-1"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-3 h-3" />
                     </button>
                   </div>
                 </div>
               ))}
             </div>
-
             <div className="p-4 border-t space-y-3">
-              <div className="flex justify-between font-bold text-lg">
+              <div className="flex justify-between font-black text-xs uppercase">
                 <span>Total:</span>
                 <span className="text-blue-600">
                   KSh {total.toLocaleString()}
@@ -282,9 +268,9 @@ const ShopSection = () => {
               </div>
               <button
                 onClick={checkout}
-                className="w-full bg-green-600 text-white py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-green-700 transition-colors"
+                className="w-full bg-green-600 text-white py-3 rounded font-black flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest hover:bg-green-700 transition-colors"
               >
-                <MessageCircle className="w-5 h-5" /> Checkout via WhatsApp
+                <MessageCircle className="w-3.5 h-3.5" /> WhatsApp Checkout
               </button>
             </div>
           </div>
@@ -293,5 +279,38 @@ const ShopSection = () => {
     </section>
   );
 };
+
+// --- ULTRA COMPACT PRODUCT CARD ---
+const ProductCard = ({ product, onAdd }: { product: any; onAdd: any }) => (
+  <div className="group bg-white rounded-sm border border-gray-100 overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col">
+    {/* Image Container with tight padding */}
+    <div className="aspect-square bg-[#fbfbfb] overflow-hidden p-2 relative flex items-center justify-center border-b border-gray-50">
+      <img
+        src={product.image}
+        alt={product.name}
+        className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+      />
+    </div>
+
+    {/* Tightened Info Section */}
+    <div className="p-1.5 sm:p-2 flex flex-col flex-1">
+      <h3 className="text-[10px] sm:text-[11px] font-bold text-gray-700 line-clamp-2 leading-[1.2] min-h-[1.5rem] mb-1">
+        {product.name}
+      </h3>
+
+      <div className="flex items-center justify-between mt-auto">
+        <span className="font-black text-gray-900 text-[11px] sm:text-xs tracking-tighter">
+          KSh {product.price.toLocaleString()}
+        </span>
+        <button
+          onClick={() => onAdd(product.name, product.price)}
+          className="bg-blue-600 text-white p-1.5 rounded-sm hover:bg-black active:scale-90 transition-all shadow-sm shrink-0"
+        >
+          <ShoppingCart className="w-3 h-3" />
+        </button>
+      </div>
+    </div>
+  </div>
+);
 
 export default ShopSection;
