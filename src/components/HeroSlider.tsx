@@ -49,7 +49,7 @@ const HeroSlider = () => {
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-4">
-      <div className="relative w-[96%] mx-auto mt-4 h-[30vh] md:h-[500px] overflow-hidden rounded-2xl shadow-lg bg-muted">
+      <div className="relative w-[94%] mx-auto mt-4 h-[22vh] md:h-[260px] lg:h-[300px] overflow-hidden rounded-2xl shadow-md bg-muted">
         {/* Slides */}
         {slides.map((slide, i) => (
           <div
@@ -60,58 +60,60 @@ const HeroSlider = () => {
             <img
               src={slide.image}
               alt={slide.title}
-              className="w-full h-full md:h-[500px] object-cover object-center"
+              // h- values now perfectly match the parent container
+              className="w-full h-full object-cover object-center rounded-2xl"
               width={1920}
               height={700}
               {...(i === 0 ? {} : { loading: "lazy" as const })}
             />
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent md:from-black/40" />
 
-            {/* Text */}
+            {/* Overlay - Rounded to match image */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent md:from-black/50 rounded-2xl" />
+
+            {/* Text - Scaled down for the shorter banner height */}
             <div
-              className="absolute bottom-[1.5rem] sm:bottom-[2rem] left-[1rem] sm:left-[1.5rem] lg:left-[2.5rem] max-w-xl transition-all duration-500 ease-out"
+              className="absolute bottom-[1rem] sm:bottom-[1.5rem] left-[1rem] sm:left-[1.5rem] lg:left-[2.5rem] max-w-xl transition-all duration-500 ease-out z-20"
               style={{
                 opacity: current === i ? 1 : 0,
                 transform: current === i ? "translateY(0)" : "translateY(1rem)",
               }}
             >
-              <h2 className="font-display text-xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-1.5">
+              <h2 className="font-display text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1 drop-shadow-md">
                 {slide.title}
               </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground max-w-md">
+              <p className="text-[10px] sm:text-xs text-gray-200 max-w-md line-clamp-1">
                 {slide.subtitle}
               </p>
             </div>
           </div>
         ))}
 
-        {/* Arrows */}
+        {/* Arrows - Smaller and more subtle for a premium look */}
         <button
           onClick={prev}
-          className="absolute left-[0.5rem] top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-card/60 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-card transition-all duration-300"
+          className="absolute left-[0.5rem] top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/40 transition-all"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
           onClick={next}
-          className="absolute right-[0.5rem] top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-card/60 backdrop-blur-sm border border-border flex items-center justify-center text-foreground hover:bg-card transition-all duration-300"
+          className="absolute right-[0.5rem] top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/40 transition-all"
           aria-label="Next slide"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
 
         {/* Dots */}
-        <div className="absolute bottom-[0.625rem] left-1/2 -translate-x-1/2 z-10 flex gap-[0.5rem]">
+        <div className="absolute bottom-[0.5rem] left-1/2 -translate-x-1/2 z-30 flex gap-2">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
                 current === i
-                  ? "bg-primary scale-125 shadow-[0_0_8px_hsl(var(--voltage-blue)/0.6)]"
-                  : "bg-muted-foreground/40 hover:bg-muted-foreground/70"
+                  ? "bg-white scale-125 shadow-lg"
+                  : "bg-white/40 hover:bg-white/60"
               }`}
               aria-label={`Go to slide ${i + 1}`}
             />
