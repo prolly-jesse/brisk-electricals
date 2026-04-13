@@ -8,17 +8,14 @@ const slides = [
   {
     image: slideVoltage,
     title: "SHOP WITH US",
-    subtitle: "Premium Electrical Solutions & Modern Building Lighting",
   },
   {
     image: slideShower,
-    title: "Instant Power",
-    subtitle: "Professional Instant Shower Installations for Every Home",
+    title: "CONSULT",
   },
   {
     image: slideSolar,
     title: "Solar Solutions",
-    subtitle: "Sustainable Solar Energy Systems — Built for Nairobi",
   },
 ];
 
