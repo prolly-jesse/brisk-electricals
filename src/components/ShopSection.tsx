@@ -267,7 +267,7 @@ const ShopSection = () => {
   const { items, addItem, removeItem, updateQty, total, count } = useCart();
 
   const handleAdd = (name: string, price: number, image: string) => {
-    addItem({ name, price, image }, 1);
+    addItem({ name, price, mainImage }, 1);
     setToast(`${name.substring(0, 15)}... added`);
     setTimeout(() => setToast(null), 2000);
   };
