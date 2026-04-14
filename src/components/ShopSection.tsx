@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 
-// --- 1. IMAGE IMPORTS ---
+// --- 1. ASSET IMPORTS ---
 import imgDemo1 from "@/assets/imgdemo.jpg";
 import imgDemo2 from "@/assets/imgdemo2.jpg";
 
@@ -223,7 +223,7 @@ const ShopSection = () => {
 
   const { items, addItem, removeItem, updateQty, total, count } = useCart();
 
-  // --- ACTIONS ---
+  // --- HANDLERS ---
   const handleAdd = (name: string, price: number, image: string) => {
     addItem({ name, price, image }, 1);
     setToast(`${name.substring(0, 15)}... added`);
@@ -239,7 +239,7 @@ const ShopSection = () => {
     );
   };
 
-  // --- FILTERING LOGIC ---
+  // --- DERIVED STATE ---
   const allProducts = useMemo(
     () =>
       catalogData.flatMap((cat) =>
@@ -249,10 +249,9 @@ const ShopSection = () => {
   );
 
   const searchResults = useMemo(() => {
-    if (!searchQuery) return [];
-    return allProducts.filter((p) =>
-      p.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return [];
+    return allProducts.filter((p) => p.name.toLowerCase().includes(query));
   }, [searchQuery, allProducts]);
 
   const currentCategoryData = useMemo(
@@ -273,19 +272,21 @@ const ShopSection = () => {
   return (
     <section
       id="shop"
-      className="py-2 px-3 max-w-7xl mx-auto min-h-screen relative bg-white dark:bg-black transition-colors duration-300"
+      className="py-6 px-4 max-w-7xl mx-auto min-h-screen relative bg-white dark:bg-black transition-colors duration-500"
     >
-      {/* --- STICKY TOP CONTROLS --- */}
-      <div className="sticky top-4 z-40 flex justify-end items-center gap-2 pr-2 pointer-events-none">
+      {/* --- TOP CONTROLS --- */}
+      <div className="sticky top-4 z-40 flex justify-end items-center gap-3 pr-2 pointer-events-none">
         <div
-          className={`pointer-events-auto flex items-center bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 shadow-2xl rounded-full overflow-hidden transition-all duration-300 ${
-            searchOpen ? "w-48 px-3 py-1" : "w-0 px-0 py-0 border-none"
+          className={`pointer-events-auto flex items-center bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 shadow-xl rounded-full overflow-hidden transition-all duration-300 ${
+            searchOpen
+              ? "w-56 px-4 py-2"
+              : "w-0 px-0 py-0 border-none opacity-0"
           }`}
         >
           <input
             type="text"
-            placeholder="Search..."
-            className="text-[10px] font-bold uppercase w-full bg-transparent outline-none text-gray-800 dark:text-gray-100"
+            placeholder="Search items..."
+            className="text-[11px] font-black uppercase w-full bg-transparent outline-none text-gray-800 dark:text-neutral-200"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -296,7 +297,7 @@ const ShopSection = () => {
             setSearchOpen(!searchOpen);
             if (searchOpen) setSearchQuery("");
           }}
-          className="pointer-events-auto bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 text-gray-800 dark:text-white p-3 rounded-full shadow-2xl active:scale-95 transition-transform"
+          className="pointer-events-auto bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 text-gray-800 dark:text-neutral-200 p-3 rounded-full shadow-lg active:scale-90 transition-all"
         >
           {searchOpen ? (
             <X className="w-5 h-5" />
@@ -307,11 +308,11 @@ const ShopSection = () => {
 
         <button
           onClick={() => setCartOpen(true)}
-          className="pointer-events-auto bg-black dark:bg-blue-600 text-white p-3 rounded-full shadow-2xl relative active:scale-95 transition-transform"
+          className="pointer-events-auto bg-black dark:bg-blue-600 text-white p-3 rounded-full shadow-lg relative active:scale-90 transition-all"
         >
           <ShoppingCart className="w-5 h-5" />
           {count > 0 && (
-            <span className="absolute -top-1 -right-1 bg-blue-600 dark:bg-white dark:text-blue-600 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white dark:border-gray-900">
+            <span className="absolute -top-1 -right-1 bg-blue-600 dark:bg-white dark:text-blue-600 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white dark:border-black">
               {count}
             </span>
           )}
@@ -320,155 +321,166 @@ const ShopSection = () => {
 
       {/* --- TOAST --- */}
       {toast && (
-        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[60] bg-gray-900 dark:bg-blue-600 text-white text-[10px] font-bold px-4 py-2 rounded-full shadow-lg animate-in fade-in slide-in-from-bottom-4">
+        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[60] bg-gray-900 dark:bg-blue-600 text-white text-[10px] font-black px-4 py-2 rounded-full shadow-2xl animate-in fade-in slide-in-from-bottom-4">
           {toast}
         </div>
       )}
 
-      {/* --- CONTENT AREA --- */}
-      {searchQuery ? (
-        <div className="pt-2 mb-10">
-          <h2 className="text-[10px] font-black uppercase text-gray-400 dark:text-gray-500 mb-4 border-b dark:border-gray-800 pb-2">
-            Results for: {searchQuery}
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
-            {searchResults.map((p) => (
-              <ProductCard key={p.name} product={p} onAdd={handleAdd} />
-            ))}
-          </div>
-        </div>
-      ) : (
-        <>
-          {activeCategory ? (
-            <div className="pt-2">
-              <div className="flex items-center justify-between mb-4">
-                <button
-                  onClick={() => {
-                    setActiveCategory(null);
-                    setActiveSub("All");
-                  }}
-                  className="flex items-center gap-1 text-gray-400 dark:text-gray-500 text-[10px] font-bold uppercase"
-                >
-                  <ArrowLeft className="w-3 h-3" /> Back
-                </button>
-                <h2 className="text-sm font-black uppercase text-gray-900 dark:text-white">
-                  {activeCategory}
-                </h2>
-              </div>
-
-              <div className="flex gap-2 overflow-x-auto pb-4 no-scrollbar">
-                {[
-                  "All",
-                  ...(currentCategoryData?.subcategories.map((s) => s.name) ||
-                    []),
-                ].map((sub) => (
-                  <button
-                    key={sub}
-                    onClick={() => setActiveSub(sub)}
-                    className={`px-3 py-1.5 whitespace-nowrap text-[10px] font-black uppercase border transition-all ${
-                      activeSub === sub
-                        ? "bg-blue-600 border-blue-600 text-white"
-                        : "bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-800 text-gray-400 dark:text-gray-500"
-                    }`}
-                  >
-                    {sub}
-                  </button>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                {filteredProducts.map((p) => (
-                  <ProductCard key={p.name} product={p} onAdd={handleAdd} />
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="pt-2">
-              {catalogData.map((cat) => (
-                <div key={cat.name} className="mb-8">
-                  <div className="flex items-center justify-between mb-3 border-b border-gray-100 dark:border-gray-800 pb-1">
-                    <h2 className="text-xs sm:text-sm font-black uppercase text-gray-900 dark:text-white">
-                      {cat.name}
-                    </h2>
-                    <button
-                      onClick={() => setActiveCategory(cat.name)}
-                      className="text-blue-600 font-black text-[9px] uppercase tracking-widest flex items-center"
-                    >
-                      EXPLORE <ChevronRight className="w-3 h-3" />
-                    </button>
-                  </div>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                    {cat.subcategories
-                      .flatMap((s) => s.products)
-                      .slice(0, 4)
-                      .map((p) => (
-                        <ProductCard
-                          key={p.name}
-                          product={p}
-                          onAdd={handleAdd}
-                        />
-                      ))}
-                  </div>
-                </div>
+      <div className="mt-8">
+        {searchQuery ? (
+          <div className="animate-in fade-in">
+            <h2 className="text-[11px] font-black uppercase text-gray-400 dark:text-neutral-600 mb-6 border-b dark:border-neutral-800 pb-2 flex justify-between">
+              Found ({searchResults.length})
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+              {searchResults.map((p) => (
+                <ProductCard key={p.name} product={p} onAdd={handleAdd} />
               ))}
             </div>
-          )}
-        </>
-      )}
+          </div>
+        ) : (
+          <>
+            {activeCategory ? (
+              <div className="animate-in slide-in-from-right-4 duration-500">
+                <div className="flex items-center justify-between mb-6">
+                  <button
+                    onClick={() => {
+                      setActiveCategory(null);
+                      setActiveSub("All");
+                    }}
+                    className="flex items-center gap-2 text-gray-400 dark:text-neutral-500 text-[11px] font-black uppercase tracking-widest transition-colors"
+                  >
+                    <ArrowLeft className="w-4 h-4" /> Back
+                  </button>
+                  <h2 className="text-sm font-black uppercase tracking-tighter text-gray-900 dark:text-neutral-100">
+                    {activeCategory}
+                  </h2>
+                </div>
+                <div className="flex gap-2 overflow-x-auto pb-6 no-scrollbar">
+                  {[
+                    "All",
+                    ...(currentCategoryData?.subcategories.map((s) => s.name) ||
+                      []),
+                  ].map((sub) => (
+                    <button
+                      key={sub}
+                      onClick={() => setActiveSub(sub)}
+                      className={`px-4 py-2 text-[10px] font-black uppercase border rounded-sm transition-all ${
+                        activeSub === sub
+                          ? "bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-600/20"
+                          : "bg-white dark:bg-neutral-900 border-gray-100 dark:border-neutral-800 text-gray-400 dark:text-neutral-500"
+                      }`}
+                    >
+                      {sub}
+                    </button>
+                  ))}
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                  {filteredProducts.map((p) => (
+                    <ProductCard key={p.name} product={p} onAdd={handleAdd} />
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-12">
+                {catalogData.map((cat) => (
+                  <div key={cat.name}>
+                    <div className="flex items-end justify-between mb-4 border-b border-gray-100 dark:border-neutral-800 pb-1">
+                      <div className="relative">
+                        <h2 className="text-xs sm:text-sm font-black uppercase tracking-widest text-gray-900 dark:text-neutral-100">
+                          {cat.name}
+                        </h2>
+                        <div className="absolute -bottom-[5px] left-0 w-8 h-0.5 bg-blue-600"></div>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setActiveCategory(cat.name);
+                          setSearchQuery("");
+                        }}
+                        className="text-blue-600 font-black text-[10px] uppercase tracking-widest flex items-center gap-1 hover:gap-2 transition-all"
+                      >
+                        EXPLORE <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      {cat.subcategories
+                        .flatMap((s) => s.products)
+                        .slice(0, 4)
+                        .map((p) => (
+                          <ProductCard
+                            key={p.name}
+                            product={p}
+                            onAdd={handleAdd}
+                          />
+                        ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </div>
 
       {/* --- CART DRAWER --- */}
       {cartOpen && (
         <div className="fixed inset-0 z-50 flex justify-end">
           <div
-            className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setCartOpen(false)}
           />
-          <div className="relative w-full max-w-[340px] bg-white dark:bg-gray-900 h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
-            <div className="p-4 border-b dark:border-gray-800 flex items-center justify-between mt-16 md:mt-20">
-              <h3 className="font-black text-xs uppercase dark:text-white">
-                My Order ({count})
+          <div className="relative w-full max-w-[340px] bg-white dark:bg-neutral-900 h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-500">
+            <div className="p-6 border-b dark:border-neutral-800 flex items-center justify-between mt-16 md:mt-20">
+              <h3 className="font-black text-xs uppercase tracking-widest dark:text-neutral-100">
+                Order List ({count})
               </h3>
               <button
                 onClick={() => setCartOpen(false)}
-                className="p-2 text-gray-400 dark:text-gray-500"
+                className="p-2 text-gray-400 hover:text-black dark:hover:text-white transition-colors"
               >
-                <X className="w-5 h-5" />
+                <X className="w-6 h-6" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-3 space-y-2">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {items.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-gray-300 opacity-20">
                   <ShoppingCart className="w-12 h-12 mb-3" />
-                  <p className="text-[10px] font-black uppercase">Empty Cart</p>
+                  <p className="text-[10px] font-black uppercase">Empty</p>
                 </div>
               ) : (
                 items.map((item) => (
                   <div
                     key={item.name}
-                    className="flex items-center justify-between bg-white dark:bg-gray-800 p-2 rounded-sm border border-gray-100 dark:border-gray-700"
+                    className="flex items-center justify-between bg-white dark:bg-neutral-800 p-2 rounded-sm border border-gray-100 dark:border-neutral-700 shadow-sm"
                   >
                     <div className="flex-1 pr-3">
-                      <p className="text-[10px] font-bold line-clamp-2 uppercase dark:text-gray-200">
+                      <p className="text-[10px] font-bold line-clamp-2 uppercase dark:text-neutral-200 leading-tight">
                         {item.name}
                       </p>
                       <p className="text-blue-600 font-black text-xs">
                         KSh {item.price.toLocaleString()}
                       </p>
                     </div>
-                    <div className="flex items-center gap-2 bg-gray-50 dark:bg-gray-900 p-1 rounded">
-                      <button onClick={() => updateQty(item.name, -1)}>
-                        <Minus className="w-3 h-3 dark:text-white" />
+                    <div className="flex items-center gap-2 bg-gray-50 dark:bg-neutral-950 p-1 rounded">
+                      <button
+                        onClick={() => updateQty(item.name, -1)}
+                        className="p-1 dark:text-white"
+                      >
+                        <Minus className="w-3 h-3" />
                       </button>
-                      <span className="text-[10px] font-black dark:text-white">
+                      <span className="text-[10px] font-black dark:text-white min-w-[12px] text-center">
                         {item.qty}
                       </span>
-                      <button onClick={() => updateQty(item.name, 1)}>
-                        <Plus className="w-3 h-3 dark:text-white" />
+                      <button
+                        onClick={() => updateQty(item.name, 1)}
+                        className="p-1 dark:text-white"
+                      >
+                        <Plus className="w-3 h-3" />
                       </button>
                       <button
                         onClick={() => removeItem(item.name)}
-                        className="text-red-500 ml-1"
+                        className="text-red-500 ml-1 p-1"
                       >
                         <Trash2 className="w-3 h-3" />
                       </button>
@@ -478,21 +490,21 @@ const ShopSection = () => {
               )}
             </div>
 
-            <div className="p-4 border-t dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 space-y-4 pb-10">
+            <div className="p-6 border-t dark:border-neutral-800 bg-gray-50 dark:bg-neutral-950 space-y-4 pb-12">
               <div className="flex justify-between items-end">
-                <span className="text-[9px] font-black text-gray-400 uppercase">
+                <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">
                   Total
                 </span>
-                <span className="text-lg font-black text-gray-900 dark:text-white tracking-tighter">
+                <span className="text-lg font-black text-gray-900 dark:text-white">
                   KSh {total.toLocaleString()}
                 </span>
               </div>
               <button
                 onClick={checkout}
                 disabled={items.length === 0}
-                className="w-full bg-green-600 text-white py-4 rounded-sm font-black flex items-center justify-center gap-3 text-[11px] uppercase tracking-widest shadow-lg active:scale-95"
+                className="w-full bg-green-600 text-white py-4 rounded-sm font-black flex items-center justify-center gap-3 text-[11px] uppercase shadow-lg active:scale-95 transition-transform"
               >
-                <MessageCircle className="w-4 h-4" /> Send to WhatsApp
+                <MessageCircle className="w-4 h-4" /> WhatsApp Order
               </button>
             </div>
           </div>
@@ -504,27 +516,27 @@ const ShopSection = () => {
 
 // --- PRODUCT CARD COMPONENT ---
 const ProductCard = ({ product, onAdd }: { product: any; onAdd: any }) => (
-  <div className="group bg-white dark:bg-gray-900 rounded-sm border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-md transition-all flex flex-col">
-    <div className="aspect-square bg-[#fbfbfb] dark:bg-gray-800 overflow-hidden p-2 relative flex items-center justify-center border-b dark:border-gray-800">
+  <div className="group bg-white dark:bg-neutral-900 rounded-sm border border-gray-100 dark:border-neutral-800/50 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col">
+    <div className="aspect-square bg-[#fbfbfb] dark:bg-neutral-800/20 overflow-hidden p-4 relative flex items-center justify-center border-b dark:border-neutral-800/50">
       <img
         src={product.image}
         alt={product.name}
         className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal group-hover:scale-105 transition-transform duration-500"
       />
     </div>
-    <div className="p-1.5 flex flex-col flex-1">
-      <h3 className="text-[10px] font-bold text-gray-700 dark:text-gray-300 line-clamp-2 leading-tight min-h-[1.5rem] mb-1 uppercase">
+    <div className="p-2.5 flex flex-col flex-1">
+      <h3 className="text-[10px] font-bold text-gray-700 dark:text-neutral-300 line-clamp-2 leading-tight min-h-[1.5rem] mb-2 uppercase tracking-tight">
         {product.name}
       </h3>
       <div className="flex items-center justify-between mt-auto">
-        <span className="font-black text-gray-900 dark:text-white text-[11px]">
+        <span className="font-black text-gray-900 dark:text-neutral-100 text-[11px] tracking-tighter">
           KSh {product.price.toLocaleString()}
         </span>
         <button
           onClick={() => onAdd(product.name, product.price, product.image)}
-          className="bg-blue-600 text-white p-1.5 rounded-sm active:scale-95 transition-all"
+          className="bg-blue-600 text-white p-2 rounded-sm active:scale-90 transition-all shadow-md"
         >
-          <Plus className="w-3.5 h-3.5" />
+          <Plus className="w-4 h-4" />
         </button>
       </div>
     </div>

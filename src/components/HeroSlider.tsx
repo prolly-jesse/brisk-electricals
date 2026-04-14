@@ -11,7 +11,7 @@ const slides = [
   },
   {
     image: slideShower,
-    title: "CONSULT",
+    title: "HOT DEALS",
   },
   {
     image: slideSolar,
