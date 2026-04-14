@@ -254,7 +254,6 @@ const catalogData = [
     ],
   },
 ];
-
 const ShopSection = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeSub, setActiveSub] = useState<string>("All");
@@ -267,11 +266,15 @@ const ShopSection = () => {
 
   const { items, addItem, removeItem, updateQty, total, count } = useCart();
 
-  // --- ACTIONS ---
   const handleAdd = (name: string, price: number, image: string) => {
     addItem({ name, price, image }, 1);
     setToast(`${name.substring(0, 15)}... added`);
     setTimeout(() => setToast(null), 2000);
+  };
+
+  const clearSearch = () => {
+    setSearchQuery("");
+    setSearchOpen(false);
   };
 
   const checkout = () => {
@@ -283,7 +286,22 @@ const ShopSection = () => {
     );
   };
 
-  // --- DATA DERIVATION ---
+  // --- LOGIC: RELATED PRODUCTS BY CATEGORY ---
+  const relatedProducts = useMemo(() => {
+    if (!selectedProduct) return [];
+    const parentCategory = catalogData.find((cat) =>
+      cat.subcategories.some((sub) =>
+        sub.products.some((p) => p.sku === selectedProduct.sku)
+      )
+    );
+    if (!parentCategory) return [];
+    return parentCategory.subcategories
+      .flatMap((sub) => sub.products)
+      .filter((p) => p.sku !== selectedProduct.sku)
+      .slice(0, 4);
+  }, [selectedProduct]);
+
+  // --- LOGIC: SEARCH & FILTERING ---
   const allProducts = useMemo(
     () =>
       catalogData.flatMap((cat) =>
@@ -322,7 +340,7 @@ const ShopSection = () => {
       {/* --- TOP CONTROLS --- */}
       <div className="sticky top-4 z-40 flex justify-end items-center gap-3 pr-2 pointer-events-none">
         <div
-          className={`pointer-events-auto flex items-center bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 shadow-xl rounded-full transition-all duration-300 ${
+          className={`pointer-events-auto flex items-center bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 shadow-xl rounded-full overflow-hidden transition-all duration-300 ${
             searchOpen
               ? "w-56 px-4 py-2"
               : "w-0 px-0 py-0 border-none opacity-0"
@@ -341,7 +359,7 @@ const ShopSection = () => {
             setSearchOpen(!searchOpen);
             if (searchOpen) setSearchQuery("");
           }}
-          className="pointer-events-auto bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 text-gray-800 dark:text-neutral-200 p-3 rounded-full shadow-lg active:scale-90 transition-all"
+          className="pointer-events-auto bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 text-gray-800 dark:text-neutral-200 p-3 rounded-full shadow-lg active:scale-90"
         >
           {searchOpen ? (
             <X className="w-5 h-5" />
@@ -351,7 +369,7 @@ const ShopSection = () => {
         </button>
         <button
           onClick={() => setCartOpen(true)}
-          className="pointer-events-auto bg-black dark:bg-blue-600 text-white p-3 rounded-full shadow-lg relative active:scale-90 transition-all"
+          className="pointer-events-auto bg-black dark:bg-blue-600 text-white p-3 rounded-full shadow-lg relative active:scale-90"
         >
           <ShoppingCart className="w-5 h-5" />
           {count > 0 && (
@@ -363,63 +381,61 @@ const ShopSection = () => {
       </div>
 
       {toast && (
-        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[60] bg-gray-900 dark:bg-blue-600 text-white text-[10px] font-black px-4 py-2 rounded-full shadow-2xl animate-in fade-in slide-in-from-bottom-4">
+        <div className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[60] bg-gray-900 dark:bg-blue-600 text-white text-[10px] font-black px-4 py-2 rounded-full shadow-lg animate-in fade-in slide-in-from-bottom-4">
           {toast}
         </div>
       )}
 
-      <div className="mt-8">
+      <div className="mt-6">
         {selectedProduct ? (
-          /* LEVEL 3: PRODUCT DETAIL */
-          <div className="animate-in fade-in duration-500 space-y-12">
-            <div className="flex items-center justify-between border-b dark:border-neutral-800 pb-4">
+          /* LEVEL 3: PRODUCT DETAIL VIEW (TIGHTER TYPOGRAPHY) */
+          <div className="animate-in fade-in duration-500 space-y-8">
+            {" "}
+            {/* Reduced from 12 to 8 */}
+            <div className="flex items-center justify-between border-b dark:border-neutral-800 pb-3">
               <button
                 onClick={() => setSelectedProduct(null)}
-                className="flex items-center gap-2 text-gray-400 dark:text-neutral-500 text-[11px] font-black uppercase tracking-widest hover:text-blue-600 transition-colors"
+                className="flex items-center gap-2 text-gray-400 dark:text-neutral-500 text-[10px] font-black uppercase tracking-widest hover:text-blue-600 transition-colors"
               >
-                <ArrowLeft className="w-4 h-4" /> Back to catalog
+                <ArrowLeft className="w-4 h-4" /> Back
               </button>
-              <span className="text-[10px] font-black text-gray-300 dark:text-neutral-800 tracking-tighter">
-                REF: {selectedProduct.sku}
+              <span className="text-[9px] font-black text-gray-300 dark:text-neutral-800 uppercase tracking-tighter">
+                SKU: {selectedProduct.sku}
               </span>
             </div>
-
-            <div className="grid md:grid-cols-2 gap-12 items-start">
-              <div className="space-y-4">
-                <div className="aspect-square bg-[#fbfbfb] dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 p-8 rounded-sm flex items-center justify-center">
+            <div className="grid md:grid-cols-2 gap-8 items-start">
+              <div className="space-y-3">
+                <div className="aspect-square bg-[#fbfbfb] dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 p-6 rounded-sm flex items-center justify-center">
                   <img
                     src={selectedProduct.mainImage}
                     alt={selectedProduct.name}
                     className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  {selectedProduct.images
-                    .slice(0, 2)
-                    .map((img: any, i: number) => (
-                      <div
-                        key={i}
-                        className="aspect-video bg-[#fbfbfb] dark:bg-neutral-900 border dark:border-neutral-800 p-4 rounded-sm flex items-center justify-center"
-                      >
-                        <img
-                          src={img}
-                          className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal"
-                        />
-                      </div>
-                    ))}
+                <div className="grid grid-cols-2 gap-3">
+                  {selectedProduct.images.slice(0, 2).map((img, i) => (
+                    <div
+                      key={i}
+                      className="aspect-video bg-[#fbfbfb] dark:bg-neutral-900 border dark:border-neutral-800 p-2 rounded-sm flex items-center justify-center"
+                    >
+                      <img
+                        src={img}
+                        className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              <div className="space-y-8">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-black uppercase tracking-tighter text-gray-950 dark:text-neutral-100 leading-[0.9]">
+              <div className="space-y-6">
+                <div className="space-y-1">
+                  <h1 className="text-xl font-black uppercase tracking-tighter text-gray-950 dark:text-neutral-100 leading-tight">
                     {selectedProduct.name}
                   </h1>
-                  <p className="font-black text-5xl tracking-tighter text-blue-600 dark:text-neutral-100">
+                  <p className="font-black text-3xl tracking-tighter text-blue-600 dark:text-neutral-100">
                     KSh {selectedProduct.price.toLocaleString()}
                   </p>
                 </div>
-
                 <button
                   onClick={() =>
                     handleAdd(
@@ -428,34 +444,51 @@ const ShopSection = () => {
                       selectedProduct.mainImage
                     )
                   }
-                  className="w-full bg-blue-600 hover:bg-black dark:hover:bg-white dark:hover:text-black text-white py-6 rounded-sm font-black text-[13px] uppercase tracking-[0.2em] transition-all shadow-xl active:scale-95"
+                  className="w-full bg-blue-600 hover:bg-black dark:hover:bg-white dark:hover:text-black text-white py-4 rounded-sm font-black text-[11px] uppercase tracking-[0.2em] transition-all shadow-lg active:scale-95"
                 >
-                  Add to Your Order
+                  Add to Cart
                 </button>
-
-                <div className="border-t dark:border-neutral-800 pt-6">
-                  <h4 className="text-[11px] font-black uppercase tracking-widest text-gray-400 mb-2">
-                    Specifications
+                <div className="border-t dark:border-neutral-800 pt-4 space-y-2">
+                  <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">
+                    Description
                   </h4>
-                  <p className="text-[11px] font-bold text-gray-600 dark:text-neutral-400 uppercase leading-relaxed tracking-wide">
+                  <p className="text-[10px] font-bold text-gray-600 dark:text-neutral-400 uppercase leading-relaxed tracking-wide">
                     {selectedProduct.desc}
                   </p>
                 </div>
               </div>
             </div>
+            {/* RELATED PRODUCTS */}
+            {relatedProducts.length > 0 && (
+              <div className="border-t dark:border-neutral-800 pt-10">
+                <h4 className="text-[9px] font-black uppercase text-gray-400 dark:text-neutral-600 mb-6 tracking-[0.3em] text-center">
+                  Similar Options
+                </h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {relatedProducts.map((p) => (
+                    <ProductCard
+                      key={p.sku}
+                      product={p}
+                      onAdd={handleAdd}
+                      onSelect={() => setSelectedProduct(p)}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ) : (
-          /* MAIN GRID VIEW */
+          /* GRID VIEW: LEVEL 1 & 2 (TIGHT SPACING) */
           <>
             {searchQuery ? (
               <div className="animate-in fade-in">
-                <h2 className="text-2xl font-black uppercase text-gray-950 dark:text-neutral-100 mb-8 tracking-tighter">
-                  Search Results ({searchResults.length})
+                <h2 className="text-xl font-black uppercase text-gray-900 dark:text-neutral-100 mb-6 tracking-tighter">
+                  Search Results
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
                   {searchResults.map((p) => (
                     <ProductCard
-                      key={p.sku || p.name}
+                      key={p.sku}
                       product={p}
                       onAdd={handleAdd}
                       onSelect={() => setSelectedProduct(p)}
@@ -467,21 +500,22 @@ const ShopSection = () => {
               <>
                 {activeCategory ? (
                   <div className="animate-in slide-in-from-right-4 duration-500">
-                    <div className="flex items-center justify-between mb-8">
+                    <div className="flex items-center justify-between mb-6">
                       <button
                         onClick={() => {
                           setActiveCategory(null);
                           setActiveSub("All");
                         }}
-                        className="flex items-center gap-2 text-gray-400 dark:text-neutral-500 text-[11px] font-black uppercase tracking-widest"
+                        className="flex items-center gap-2 text-gray-400 dark:text-neutral-500 text-[10px] font-black uppercase tracking-widest"
                       >
                         <ArrowLeft className="w-4 h-4" /> Back
                       </button>
-                      <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter text-gray-950 dark:text-neutral-100">
+                      <h2 className="text-xl font-black uppercase tracking-tighter text-gray-950 dark:text-neutral-100">
                         {activeCategory}
                       </h2>
                     </div>
-                    <div className="flex gap-2 overflow-x-auto pb-8 no-scrollbar">
+                    {/* Subcategories buttons */}
+                    <div className="flex gap-2 overflow-x-auto pb-6 no-scrollbar">
                       {[
                         "All",
                         ...(currentCategoryData?.subcategories.map(
@@ -491,9 +525,9 @@ const ShopSection = () => {
                         <button
                           key={sub}
                           onClick={() => setActiveSub(sub)}
-                          className={`px-6 py-3 text-[10px] font-black uppercase border rounded-sm transition-all ${
+                          className={`px-4 py-2 text-[9px] font-black uppercase border rounded-sm transition-all ${
                             activeSub === sub
-                              ? "bg-blue-600 border-blue-600 text-white shadow-lg"
+                              ? "bg-blue-600 border-blue-600 text-white shadow-md"
                               : "bg-white dark:bg-neutral-900 border-gray-100 dark:border-neutral-800 text-gray-400 dark:text-neutral-500"
                           }`}
                         >
@@ -504,7 +538,7 @@ const ShopSection = () => {
                     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
                       {filteredProducts.map((p) => (
                         <ProductCard
-                          key={p.sku || p.name}
+                          key={p.sku}
                           product={p}
                           onAdd={handleAdd}
                           onSelect={() => setSelectedProduct(p)}
@@ -513,22 +547,22 @@ const ShopSection = () => {
                     </div>
                   </div>
                 ) : (
-                  <div className="space-y-24">
+                  <div className="space-y-10">
                     {catalogData.map((cat) => (
                       <div key={cat.name}>
-                        <div className="flex items-end justify-between mb-8 border-b-2 border-gray-100 dark:border-neutral-800 pb-3">
-                          <div className="flex items-center gap-4">
-                            <div className="w-2 h-10 bg-blue-600 rounded-full"></div>
-                            <h2 className="text-xl sm:text-3xl font-black uppercase tracking-tighter text-gray-950 dark:text-neutral-100">
+                        <div className="flex items-end justify-between mb-4 border-b-2 border-gray-100 dark:border-neutral-800 pb-2">
+                          <div className="flex items-center gap-3">
+                            <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
+                            <h2 className="text-lg sm:text-xl font-black uppercase tracking-tighter text-gray-950 dark:text-neutral-100">
                               {cat.name}
                             </h2>
                           </div>
                           <button
                             onClick={() => {
                               setActiveCategory(cat.name);
-                              setSearchQuery("");
+                              clearSearch();
                             }}
-                            className="text-blue-600 font-black text-[11px] uppercase tracking-[0.2em] flex items-center gap-1 hover:gap-3 transition-all"
+                            className="text-blue-600 font-black text-[9px] uppercase tracking-[0.2em] flex items-center gap-1 hover:gap-2 transition-all"
                           >
                             EXPLORE <ChevronRight className="w-4 h-4" />
                           </button>
@@ -539,7 +573,7 @@ const ShopSection = () => {
                             .slice(0, 4)
                             .map((p) => (
                               <ProductCard
-                                key={p.sku || p.name}
+                                key={p.sku}
                                 product={p}
                                 onAdd={handleAdd}
                                 onSelect={() => setSelectedProduct(p)}
@@ -563,10 +597,10 @@ const ShopSection = () => {
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={() => setCartOpen(false)}
           />
-          <div className="relative w-full max-w-[340px] bg-white dark:bg-neutral-900 h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-500">
+          <div className="relative w-full max-w-[340px] bg-white dark:bg-neutral-900 h-full shadow-2xl flex flex-col animate-in slide-in-from-right duration-500 border-l dark:border-neutral-800">
             <div className="p-8 border-b dark:border-neutral-800 flex items-center justify-between mt-16 md:mt-20">
-              <h3 className="font-black text-[12px] uppercase dark:text-neutral-100 tracking-widest">
-                Cart Summary ({count})
+              <h3 className="font-black text-[11px] uppercase dark:text-neutral-100 tracking-widest">
+                Selection ({count})
               </h3>
               <button
                 onClick={() => setCartOpen(false)}
@@ -575,61 +609,50 @@ const ShopSection = () => {
                 <X className="w-6 h-6" />
               </button>
             </div>
-
             <div className="flex-1 overflow-y-auto p-6 space-y-4">
-              {items.length === 0 ? (
-                <div className="h-full flex flex-col items-center justify-center text-gray-300 opacity-20">
-                  <ShoppingCart className="w-16 h-16 mb-4" />
-                  <p className="text-[11px] font-black uppercase tracking-widest">
-                    Empty
-                  </p>
-                </div>
-              ) : (
-                items.map((item) => (
-                  <div
-                    key={item.name}
-                    className="flex items-center justify-between bg-white dark:bg-neutral-800 p-3 rounded-sm border border-gray-100 dark:border-neutral-700 shadow-sm"
-                  >
-                    <div className="flex-1 pr-4">
-                      <p className="text-[11px] font-bold line-clamp-2 uppercase dark:text-neutral-200 leading-tight mb-1">
-                        {item.name}
-                      </p>
-                      <p className="text-blue-600 font-black text-xs">
-                        KSh {item.price.toLocaleString()}
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-3 bg-gray-50 dark:bg-neutral-950 p-2 rounded">
-                      <button
-                        onClick={() => updateQty(item.name, -1)}
-                        className="p-1 dark:text-white"
-                      >
-                        <Minus className="w-3 h-3" />
-                      </button>
-                      <span className="text-[11px] font-black dark:text-white min-w-[14px] text-center">
-                        {item.qty}
-                      </span>
-                      <button
-                        onClick={() => updateQty(item.name, 1)}
-                        className="p-1 dark:text-white"
-                      >
-                        <Plus className="w-3 h-3" />
-                      </button>
-                      <button
-                        onClick={() => removeItem(item.name)}
-                        className="text-red-500 ml-1 p-1"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </button>
-                    </div>
+              {items.map((item) => (
+                <div
+                  key={item.name}
+                  className="flex items-center justify-between bg-white dark:bg-neutral-800 p-3 rounded-sm border border-gray-100 dark:border-neutral-700 shadow-sm"
+                >
+                  <div className="flex-1 pr-4">
+                    <p className="text-[10px] font-bold line-clamp-2 uppercase dark:text-neutral-200 leading-tight mb-1">
+                      {item.name}
+                    </p>
+                    <p className="text-blue-600 font-black text-xs">
+                      KSh {item.price.toLocaleString()}
+                    </p>
                   </div>
-                ))
-              )}
+                  <div className="flex items-center gap-2 bg-gray-50 dark:bg-neutral-950 p-1.5 rounded">
+                    <button
+                      onClick={() => updateQty(item.name, -1)}
+                      className="p-1 dark:text-white"
+                    >
+                      <Minus className="w-3 h-3" />
+                    </button>
+                    <span className="text-[10px] font-black dark:text-white">
+                      {item.qty}
+                    </span>
+                    <button
+                      onClick={() => updateQty(item.name, 1)}
+                      className="p-1 dark:text-white"
+                    >
+                      <Plus className="w-3 h-3" />
+                    </button>
+                    <button
+                      onClick={() => removeItem(item.name)}
+                      className="text-red-500 ml-1 p-1"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-
             <div className="p-8 border-t dark:border-neutral-800 bg-gray-50 dark:bg-neutral-950 space-y-6 pb-16">
               <div className="flex justify-between items-end">
                 <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                  Subtotal
+                  Total
                 </span>
                 <span className="text-2xl font-black text-gray-900 dark:text-white tracking-tighter">
                   KSh {total.toLocaleString()}
@@ -638,9 +661,9 @@ const ShopSection = () => {
               <button
                 onClick={checkout}
                 disabled={items.length === 0}
-                className="w-full bg-green-600 hover:bg-green-700 text-white py-5 rounded-sm font-black flex items-center justify-center gap-3 text-[12px] uppercase tracking-widest shadow-lg active:scale-95 transition-all"
+                className="w-full bg-green-600 text-white py-4 rounded-sm font-black flex items-center justify-center gap-3 text-[11px] uppercase tracking-widest active:scale-95 transition-all"
               >
-                <MessageCircle className="w-5 h-5" /> Checkout on WhatsApp
+                <MessageCircle className="w-5 h-5" /> Order via WhatsApp
               </button>
             </div>
           </div>
@@ -661,36 +684,32 @@ const ProductCard = ({
 }) => (
   <div
     onClick={onSelect}
-    className="group bg-white dark:bg-neutral-900 rounded-sm border border-gray-100 dark:border-neutral-800/50 overflow-hidden hover:shadow-2xl transition-all duration-300 flex flex-col cursor-pointer hover:-translate-y-1.5"
+    className="group bg-white dark:bg-neutral-900 rounded-sm border border-gray-100 dark:border-neutral-800/50 overflow-hidden hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer hover:-translate-y-1"
   >
-    <div className="aspect-square bg-[#fbfbfb] dark:bg-neutral-800/20 overflow-hidden p-6 relative flex items-center justify-center border-b dark:border-neutral-800/50">
+    <div className="aspect-square bg-[#fbfbfb] dark:bg-neutral-800/20 overflow-hidden p-4 relative flex items-center justify-center border-b dark:border-neutral-800/50">
       <img
-        src={product.mainImage || product.image}
+        src={product.mainImage}
         alt={product.name}
         className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal group-hover:scale-110 transition-transform duration-700"
       />
-      <div className="absolute top-3 right-3 bg-white/80 dark:bg-black/80 backdrop-blur-md p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all transform scale-50 group-hover:scale-100">
+      <div className="absolute top-2 right-2 bg-white/80 dark:bg-black/80 backdrop-blur-md p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all transform scale-50 group-hover:scale-100">
         <Maximize2 className="w-3 h-3 text-blue-600" />
       </div>
     </div>
-    <div className="p-4 flex flex-col flex-1">
-      <h3 className="text-[11px] font-bold text-gray-700 dark:text-neutral-300 line-clamp-2 leading-tight min-h-[2rem] mb-3 uppercase tracking-tight">
+    <div className="p-3 flex flex-col flex-1">
+      <h3 className="text-[10px] font-bold text-gray-700 dark:text-neutral-300 line-clamp-2 leading-tight min-h-[1.5rem] mb-2 uppercase tracking-tight">
         {product.name}
       </h3>
       <div className="flex items-center justify-between mt-auto">
-        <span className="font-black text-gray-950 dark:text-neutral-100 text-[12px] tracking-tighter">
+        <span className="font-black text-gray-950 dark:text-neutral-100 text-[11px] tracking-tighter">
           KSh {product.price.toLocaleString()}
         </span>
         <button
           onClick={(e) => {
             e.stopPropagation();
-            onAdd(
-              product.name,
-              product.price,
-              product.mainImage || product.image
-            );
+            onAdd(product.name, product.price, product.mainImage);
           }}
-          className="bg-blue-600 text-white p-2.5 rounded-sm active:scale-90 transition-all shadow-md relative z-10 hover:bg-black dark:hover:bg-white dark:hover:text-black"
+          className="bg-blue-600 text-white p-2 rounded-sm active:scale-90 transition-all shadow-md relative z-10 hover:bg-black dark:hover:bg-white dark:hover:text-black"
         >
           <Plus className="w-4 h-4" />
         </button>
