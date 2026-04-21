@@ -480,19 +480,97 @@ const catalogData = [
         products: [
           {
             sku: "VIP-GLD-S",
-            name: "13A Single Luxury Glass Gold",
-            price: 850,
-            mainImage: imgDemo1,
-            images: [imgDemo1],
+            name: "13A Twin Luxury Tempered Glass Gold Socket | Universal port",
+            price: 1850,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776801917/socket2_scwnst.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776801917/socket2_scwnst.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776801986/socket3_wz7rga.jpg",
+            ],
             desc: "Luxury tempered glass finish with gold accents. VIP Series.",
           },
           {
             sku: "VIP-GLD-T",
-            name: "13A Twin Luxury Glass Gold",
-            price: 1850,
-            mainImage: imgDemo2,
-            images: [imgDemo2],
-            desc: "Twin socket luxury glass finish. Durable and easy to clean.",
+            name: "4 Gang 2 Way Grey Tempered Glass Switch",
+            price: 850,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776802246/swittch23_boqxfs.webp",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776802246/swittch23_boqxfs.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776802235/switchh_dh3j7v.jpg",
+            ],
+            desc: "The rocker switches with large buttons are easy to control. High gloss finish, delivering a tough robust product. Brief, vogue, durable, easy to clean. Stunning and Elegant look, added to your Beautiful Home. It is ideal for home, office choice and suits greatly with many modern decoration styles.Fireproof PC plate, glass panel, and module casing, never be ignited. High-Quality Tempered Glass Crystal Panel, offers excellent Scratch Resistance for the Wall Switch. Phosphor copper metal superconductivity inside to ensure switch with long lifetime.",
+          },
+        ],
+      },
+      {
+        name: "Standard Sockets & Switches",
+        products: [
+          {
+            sku: "VIP-GLD-S2",
+            name: "Big Button 4gang 2way Luxury White Switch",
+            price: 450,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776802713/white-sockets-16_bxjoho.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776802713/white-sockets-16_bxjoho.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776802732/switches-7_oiry7e.webp",
+            ],
+            desc: "Button 4gang 2way Luxury.",
+          },
+          {
+            sku: "VIP-GLD-T2",
+            name: "1Luxury Screwless Universal Port Single Socket",
+            price: 450,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803108/Untitled-design-10-2_uffcni.webp",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803108/Untitled-design-10-2_uffcni.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803073/8-3_drq8ju.webp",
+            ],
+            desc: "Screwless Universal Port Single Socket.",
+          },
+          {
+            sku: "VIP-GLD-T22",
+            name: "cooker socket",
+            price: 500,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803318/coker__kxhwlx.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803318/coker__kxhwlx.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803318/coker__kxhwlx.jpg",
+            ],
+            desc: "Cooker Socket.",
+          },
+        ],
+      },
+      {
+        name: "Switches",
+        products: [
+          {
+            sku: "VIP-GLD-S223",
+            name: "Ultra Thin 1gang 2way VIP White Switch",
+            price: 150,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803617/white-switch-16q1_mlwnuz.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803617/white-switch-16q1_mlwnuz.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803607/white-switch-13_zlsgk4.jpg",
+            ],
+            desc: "White screwless design.",
+          },
+          {
+            sku: "VIP-GLD-T33",
+            name: "Ultra Thin 3gang 2way VIP White Switch",
+            price: 300,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803936/white-sockets-16_g4fxbz.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803921/white1_nnema0.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776803607/white-switch-13_zlsgk4.jpg",
+            ],
+            desc: "Sleek and modern style.",
           },
         ],
       },
