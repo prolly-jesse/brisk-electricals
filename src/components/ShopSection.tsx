@@ -334,10 +334,26 @@ const ShopSection = () => {
     );
   }, [currentCategoryData, activeSub]);
 
+  const handleShopNow = () => {
+    const element = document.getElementById("shop");
+    if (element) {
+      // We use an offset because of your sticky header
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
   return (
     <section
       id="shop"
-      className="py-6 px-4 max-w-7xl mx-auto min-h-screen relative bg-white dark:bg-black transition-colors duration-500"
+      className="py-6 px-4 max-w-7xl mx-auto min-h-screen relative bg-white dark:bg-black transition-colors duration-500 scroll-mt-24"
     >
       {/* --- TOP CONTROLS --- */}
       <div className="sticky top-4 z-40 flex justify-end items-center gap-3 pr-2 pointer-events-none">
