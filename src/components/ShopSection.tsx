@@ -324,6 +324,25 @@ const ShopSection = () => {
       "_blank"
     );
   };
+  const [currentImgIndex, setCurrentImgIndex] = useState(0);
+
+  // Reset index whenever a new product is selected
+  useEffect(() => {
+    setCurrentImgIndex(0);
+  }, [selectedProduct]);
+
+  // Auto-rotate logic
+  useEffect(() => {
+    if (!selectedProduct || selectedProduct.images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentImgIndex((prev) =>
+        prev === selectedProduct.images.length - 1 ? 0 : prev + 1
+      );
+    }, 4000); // Rotates every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [selectedProduct, currentImgIndex]);
 
   // --- LOGIC: RELATED PRODUCTS BY CATEGORY ---
   const relatedProducts = useMemo(() => {
@@ -459,27 +478,58 @@ const ShopSection = () => {
               </span>
             </div>
             <div className="grid md:grid-cols-2 gap-8 items-start">
-              <div className="space-y-3">
-                <div className="aspect-square bg-[#fbfbfb] dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 p-6 rounded-sm flex items-center justify-center">
+              <div className="space-y-4">
+                {/* MAIN IMAGE CAROUSEL */}
+                <div className="relative aspect-square bg-[#fbfbfb] dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 p-6 rounded-sm flex items-center justify-center overflow-hidden">
                   <img
-                    src={selectedProduct.mainImage}
+                    key={currentImgIndex} // Key helps React animate the transition
+                    src={
+                      selectedProduct.images[currentImgIndex] ||
+                      selectedProduct.mainImage
+                    }
                     alt={selectedProduct.name}
-                    className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal"
+                    className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal animate-in fade-in zoom-in-95 duration-700"
                   />
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  {selectedProduct.images.slice(0, 2).map((img, i) => (
-                    <div
-                      key={i}
-                      className="aspect-video bg-[#fbfbfb] dark:bg-neutral-900 border dark:border-neutral-800 p-2 rounded-sm flex items-center justify-center"
-                    >
-                      <img
-                        src={img}
-                        className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal"
-                      />
+
+                  {/* NAVIGATION DOTS */}
+                  {selectedProduct.images.length > 1 && (
+                    <div className="absolute bottom-4 flex gap-1.5">
+                      {selectedProduct.images.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setCurrentImgIndex(i)}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${
+                            currentImgIndex === i
+                              ? "w-6 bg-blue-600"
+                              : "w-1.5 bg-gray-300 dark:bg-neutral-700"
+                          }`}
+                        />
+                      ))}
                     </div>
-                  ))}
+                  )}
                 </div>
+
+                {/* THUMBNAIL PREVIEWS (Optional: clickable to change image) */}
+                {selectedProduct.images.length > 1 && (
+                  <div className="grid grid-cols-4 gap-3">
+                    {selectedProduct.images.map((img, i) => (
+                      <div
+                        key={i}
+                        onClick={() => setCurrentImgIndex(i)}
+                        className={`aspect-square bg-white dark:bg-neutral-900 border p-2 rounded-sm cursor-pointer transition-all ${
+                          currentImgIndex === i
+                            ? "border-blue-600 ring-1 ring-blue-600"
+                            : "border-gray-100 dark:border-neutral-800"
+                        }`}
+                      >
+                        <img
+                          src={img}
+                          className="w-full h-full object-contain mix-blend-multiply dark:mix-blend-normal"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="space-y-6">
