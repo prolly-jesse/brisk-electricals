@@ -431,8 +431,8 @@ const ShopSection = () => {
 
               <div className="space-y-6">
                 <div className="space-y-1">
-                  <h1 className="text-xl font-black uppercase tracking-tighter text-gray-950 dark:text-neutral-100 leading-tight">
-                    {selectedProduct.name}
+                  <h1 className="text-xl font-black capitalize tracking-tight text-gray-950 dark:text-neutral-100 leading-tight">
+                    {selectedProduct.name.toLowerCase()}
                   </h1>
                   <p className="font-black text-3xl tracking-tighter text-blue-600 dark:text-neutral-100">
                     KSh {selectedProduct.price.toLocaleString()}
