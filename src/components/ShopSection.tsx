@@ -390,7 +390,7 @@ const ShopSection = () => {
   return (
     <section
       id="shop"
-      className="py-6 px-4 max-w-7xl mx-auto min-h-screen relative bg-white dark:bg-black transition-colors duration-500 scroll-mt-24"
+      className="py-6 px-4 max-w-7xl mx-auto min-h-screen relative bg-white dark:bg-black transition-colors duration-500 scroll-mt-34"
     >
       {/* --- TOP CONTROLS --- */}
       <div className="sticky top-4 z-40 flex justify-end items-center gap-3 pr-2 pointer-events-none">
