@@ -8,14 +8,17 @@ const slides = [
   {
     image: slideVoltage,
     title: "SHOP WITH US",
+    subtitle: "Premium Electrical Supplies for your Home & Office",
   },
   {
     image: slideShower,
     title: "HOT DEALS",
+    subtitle: "Save big on our Instant Shower collection this month",
   },
   {
     image: slideSolar,
     title: "Solar Solutions",
+    subtitle: "Reliable green energy for uninterrupted power",
   },
 ];
 
@@ -49,83 +52,81 @@ const HeroSlider = () => {
 
   return (
     <section className="px-4 sm:px-6 lg:px-8 py-2">
-      <div className="relative w-[94%] mx-auto mt-2 h-[22vh] md:h-[300px] lg:h-[300px] overflow-hidden rounded-2xl shadow-md bg-muted">
-        {/* Slides */}
+      {/* Container - Using 100% width on mobile for a cleaner look */}
+      <div className="relative w-full md:w-[96%] mx-auto mt-2 h-[25vh] md:h-[350px] overflow-hidden rounded-2xl shadow-xl bg-neutral-900">
         {slides.map((slide, i) => (
           <div
             key={i}
-            className="absolute inset-0 transition-opacity duration-[600ms] ease-in-out"
-            style={{ opacity: current === i ? 1 : 0 }}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              current === i ? "opacity-100 z-10" : "opacity-0 z-0"
+            }`}
           >
+            {/* Image with subtle zoom effect when active */}
             <img
               src={slide.image}
               alt={slide.title}
-              // h- values now perfectly match the parent container
-              className="w-full h-full object-cover object-center object-contain  rounded-2xl"
-              width={1920}
-              height={700}
-              {...(i === 0 ? {} : { loading: "lazy" as const })}
+              className={`w-full h-full object-cover transition-transform duration-[6000ms] ease-linear ${
+                current === i ? "scale-110" : "scale-100"
+              }`}
             />
 
-            {/* Overlay - Rounded to match image */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/75 via-black/20 to-transparent" /> 
+            {/* Premium Gradient Overlay: Darker at bottom for text legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
 
-            {/* Text - Scaled down for the shorter banner height */}
+            {/* Text & Action Button */}
             <div
-  className="absolute bottom-[1rem] sm:bottom-[1.5rem] left-[1rem] sm:left-[1.5rem] lg:left-[2.5rem] max-w-xl transition-all duration-500 ease-out z-20"
-  style={{
-    opacity: current === i ? 1 : 0,
-    transform: current === i ? "translateY(0)" : "translateY(1rem)",
-  }}
->
-  <h2 className="font-display text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1 drop-shadow-md">
-    {slide.title}
-  </h2>
-  <p className="text-[10px] sm:text-xs text-gray-200 max-w-md line-clamp-1 mb-2">
-    {slide.subtitle}
-  </p>
-  
-    href="#shop"
-    onClick={(e) => {
-      e.preventDefault();
-      document.getElementById("shop")?.scrollIntoView({ behavior: "smooth" });
-    }}
-    className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full transition-all active:scale-95"
-  >
-    Shop Now <ChevronRight className="w-3 h-3" />
-  </a>
-</div>
+              className="absolute bottom-[1.5rem] left-[1.2rem] md:left-[3rem] z-20 transition-all duration-700 delay-100"
+              style={{
+                opacity: current === i ? 1 : 0,
+                transform: current === i ? "translateY(0)" : "translateY(20px)",
+              }}
+            >
+              <h2 className="text-xl md:text-4xl font-black text-white uppercase tracking-tighter mb-1 drop-shadow-lg">
+                {slide.title}
+              </h2>
+              <p className="text-[10px] md:text-sm text-gray-200 font-medium mb-4 max-w-[250px] md:max-w-md line-clamp-1">
+                {slide.subtitle}
+              </p>
+
+              <a
+                href="#shop"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document
+                    .getElementById("shop")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-white hover:text-blue-600 text-white text-[10px] md:text-xs font-black uppercase tracking-widest px-5 py-2.5 rounded-sm transition-all active:scale-95 shadow-lg"
+              >
+                Shop Now <ChevronRight className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         ))}
 
-        {/* Arrows - Smaller and more subtle for a premium look */}
+        {/* Navigation Arrows */}
         <button
           onClick={prev}
-          className="absolute left-[0.5rem] top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/40 transition-all"
-          aria-label="Previous slide"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/20 hover:bg-white/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition-all hidden md:flex"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="w-5 h-5" />
         </button>
         <button
           onClick={next}
-          className="absolute right-[0.5rem] top-1/2 -translate-y-1/2 z-30 w-8 h-8 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white hover:bg-white/40 transition-all"
-          aria-label="Next slide"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-black/20 hover:bg-white/20 backdrop-blur-md border border-white/10 flex items-center justify-center text-white transition-all hidden md:flex"
         >
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-5 h-5" />
         </button>
 
         {/* Dots */}
-        <div className="absolute bottom-[0.5rem] left-1/2 -translate-x-1/2 z-30 flex gap-2">
+        <div className="absolute bottom-4 right-8 z-30 flex gap-2">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
-              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                current === i
-                  ? "bg-white scale-125 shadow-lg"
-                  : "bg-white/40 hover:bg-white/60"
+              className={`h-1 rounded-full transition-all duration-500 ${
+                current === i ? "w-8 bg-blue-600" : "w-2 bg-white/40"
               }`}
-              aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
