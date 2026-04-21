@@ -24,7 +24,16 @@ import imgDemo7 from "@/assets/Heating-Element-For-Horizon.jpg";
 import imgDemo8 from "@/assets/chand22.jpg";
 import imgDemo882 from "@/assets/chand223.jpg";
 import imgDemo883 from "@/assets/chands.jpg";
-
+import imgDemo9 from "@/assets/chand9.jpg";
+import imgDemo992 from "@/assets/chand992.jpg";
+import imgDemo993 from "@/assets/chand993.jpg";
+import imgDemo92 from "@/assets/chand92.jpg";
+import imgDemo93 from "@/assets/ledchnd223.jpg";
+import imgDemo94 from "@/assets/ledchnd224.jpg";
+import imgDemop2 from "@/assets/pendnt2.jpg";
+import imgDemop3 from "@/assets/pendnt22.jpg";
+import imgDemop4 from "@/assets/pndt223.jpg";
+import imgDemop5 from "@/assets/pendt25.jpg";
 // --- 2. FULL CATALOG DATA (RESTORED) ---
 const catalogData = [
   {
@@ -119,11 +128,40 @@ const catalogData = [
           },
           {
             sku: "LGT-CHND-RNG",
-            name: "Modern Ring Chandelier LED",
-            price: 14200,
-            mainImage: imgDemo2,
-            images: [imgDemo2],
-            desc: "Minimalist ring LED chandelier. Adjustable height and warm white illumination.",
+            name: "Modern Tree Branch Crystal Chandelier Luxury Gold Crystal Pendant Lighting 30″ Contemporary 10-Light Chandeliers for Dining Room Kitchen Bedroom Living Room",
+            price: 18200,
+            mainImage: imgDemo9,
+            images: [imgDemo992, imgDemo993],
+            desc: "Modern Tree Branch Crystal Chandelier: The surface of the chandelier is completed by metal plating process, corrosion resistance, rust prevention, and easy installation. The gold stems are thickened and encrypted, and the branches can be adjusted manually. Sparkling crystals are strung across the branches of this light fixture. Crystal Tree branch chandelier lighting is perfect for luxury and it helps to create a luxurious and vibrant atmosphere in the room.Specification: AC110v. The diameter of the lamp body is 23.6 inches, and the height of the lamp is adjustable from 20 inches to 78.7 inches. After assembling all the branches, you simply hang the crystals on the branches and gently adjust each branch to achieve the desired effect. Vaulted or slanted ceilings are compatible.",
+          },
+          {
+            sku: "LGT-CHND-667",
+            name: "3 rings Gold LED chandelier | LED living room chandelier ",
+            price: 6000,
+            mainImage: imgDemo92,
+            images: [imgDemo93, imgDemo94],
+            desc: "LED chandelier.Easy to instal.We deliver & install at a fee",
+          },
+        ],
+      },
+      {
+        name: "Pendant Lights",
+        products: [
+          {
+            sku: "LGT-CHND-66",
+            name: "2X LED Mounted Ceiling Lamp Decorative Lights for Hallway Square Warm Lights | Home & Garden ",
+            price: 2000,
+            mainImage: imgDemop2,
+            images: [imgDemop3, imgDemop4],
+            desc: "Elegant ceiling lamp ceiling fixture, perfect for any interior style.It has 5-10m² Lighting Area, with integrated LED lights, the light is cool and crisp without flicker.",
+          },
+          {
+            sku: "LGT-CHND-RNG5",
+            name: "Daphne Gold Mesh LED Pendant Light",
+            price: 6000,
+            mainImage: imgDemop5,
+            images: [imgDemop5],
+            desc: "Gold Mesh LED Pendant Light.",
           },
         ],
       },
