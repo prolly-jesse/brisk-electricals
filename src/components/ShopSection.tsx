@@ -325,24 +325,18 @@ const ShopSection = () => {
     );
   };
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Reset index whenever a new product is selected
   useEffect(() => {
-    setCurrentImgIndex(0);
-  }, [selectedProduct]);
-
-  // Auto-rotate logic
-  useEffect(() => {
-    if (!selectedProduct || selectedProduct.images.length <= 1) return;
+    if (!selectedProduct || selectedProduct.images.length <= 1 || isPaused)
+      return;
 
     const interval = setInterval(() => {
-      setCurrentImgIndex((prev) =>
-        prev === selectedProduct.images.length - 1 ? 0 : prev + 1
-      );
-    }, 4000); // Rotates every 4 seconds
+      setCurrentImgIndex((prev) => (prev + 1) % selectedProduct.images.length);
+    }, 5000);
 
     return () => clearInterval(interval);
-  }, [selectedProduct, currentImgIndex]);
+  }, [selectedProduct, isPaused]);
 
   // --- LOGIC: RELATED PRODUCTS BY CATEGORY ---
   const relatedProducts = useMemo(() => {
