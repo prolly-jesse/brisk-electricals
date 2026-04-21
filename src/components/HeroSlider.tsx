@@ -68,23 +68,33 @@ const HeroSlider = () => {
             />
 
             {/* Overlay - Rounded to match image */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent md:from-black/50 rounded-2xl" />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/75 via-black/20 to-transparent" /> 
 
             {/* Text - Scaled down for the shorter banner height */}
             <div
-              className="absolute bottom-[1rem] sm:bottom-[1.5rem] left-[1rem] sm:left-[1.5rem] lg:left-[2.5rem] max-w-xl transition-all duration-500 ease-out z-20"
-              style={{
-                opacity: current === i ? 1 : 0,
-                transform: current === i ? "translateY(0)" : "translateY(1rem)",
-              }}
-            >
-              <h2 className="font-display text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1 drop-shadow-md">
-                {slide.title}
-              </h2>
-              <p className="text-[10px] sm:text-xs text-gray-200 max-w-md line-clamp-1">
-                {slide.subtitle}
-              </p>
-            </div>
+  className="absolute bottom-[1rem] sm:bottom-[1.5rem] left-[1rem] sm:left-[1.5rem] lg:left-[2.5rem] max-w-xl transition-all duration-500 ease-out z-20"
+  style={{
+    opacity: current === i ? 1 : 0,
+    transform: current === i ? "translateY(0)" : "translateY(1rem)",
+  }}
+>
+  <h2 className="font-display text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1 drop-shadow-md">
+    {slide.title}
+  </h2>
+  <p className="text-[10px] sm:text-xs text-gray-200 max-w-md line-clamp-1 mb-2">
+    {slide.subtitle}
+  </p>
+  
+    href="#shop"
+    onClick={(e) => {
+      e.preventDefault();
+      document.getElementById("shop")?.scrollIntoView({ behavior: "smooth" });
+    }}
+    className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full transition-all active:scale-95"
+  >
+    Shop Now <ChevronRight className="w-3 h-3" />
+  </a>
+</div>
           </div>
         ))}
 
