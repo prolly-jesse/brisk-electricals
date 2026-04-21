@@ -224,6 +224,7 @@ const catalogData = [
     subcategories: [
       {
         name: "Profile Lighting",
+        shopId: "cat-deco",
         products: [
           {
             sku: "LGT-PROF-12",
@@ -723,7 +724,7 @@ const ShopSection = () => {
   }, [currentCategoryData, activeSub]);
 
   const handleShopNow = () => {
-    const element = document.getElementById("shop");
+    const element = document.getElementById("cat-deco");
     if (element) {
       // We use an offset because of your sticky header
       const offset = 80;
@@ -740,8 +741,8 @@ const ShopSection = () => {
   };
   return (
     <section
-      id="shop"
-      className="py-6 px-4 max-w-7xl mx-auto min-h-screen relative bg-white dark:bg-black transition-colors duration-500 scroll-mt-34"
+      id="scroll"
+      className="py-6 px-4 max-w-7xl mx-auto min-h-screen relative bg-white dark:bg-black transition-colors duration-500 scroll-mt-24"
     >
       {/* --- TOP CONTROLS --- */}
       <div className="sticky top-4 z-40 flex justify-end items-center gap-3 pr-2 pointer-events-none">
@@ -986,7 +987,10 @@ const ShopSection = () => {
                 ) : (
                   <div className="space-y-10">
                     {catalogData.map((cat) => (
-                      <div key={cat.name}>
+                      <div
+                        key={cat.name}
+                        id={cat.name.toLowerCase().replace(/\s+/g, "-")}
+                      >
                         <div className="flex items-end justify-between mb-4 border-b-2 border-gray-100 dark:border-neutral-800 pb-2">
                           <div className="flex items-center gap-3">
                             <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>

@@ -6,19 +6,25 @@ import slideSolar from "@/assets/slide-solar.jpg";
 
 const slides = [
   {
-    image: slideVoltage,
+    image:
+      "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776804402/slide-voltage-blue_cla5tb.jpg",
     title: "SHOP WITH US",
     subtitle: "Premium Electrical Supplies for your Home & Office",
+    shopId: "cat-deco",
   },
   {
-    image: slideShower,
+    image:
+      "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776804416/slide-instant-power_ma0erh.jpg",
     title: "HOT DEALS",
     subtitle: "Save big on our Instant Shower collection this month",
+    shopId: "cat-deco",
   },
   {
-    image: slideSolar,
+    image:
+      "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776804463/slide-solar_k2z2eg.jpg",
     title: "Solar Solutions",
     subtitle: "Reliable green energy for uninterrupted power",
+    shopId: "cat-deco",
   },
 ];
 
@@ -89,16 +95,19 @@ const HeroSlider = () => {
               </p>
 
               <a
-                href="#shop"
+                href={`#${slide.shopId}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  document
-                    .getElementById("shop")
-                    ?.scrollIntoView({ behavior: "smooth" });
+                  const el = document.getElementById(slide.shopId);
+                  if (el) {
+                    const top =
+                      el.getBoundingClientRect().top + window.scrollY - 80;
+                    window.scrollTo({ top, behavior: "smooth" });
+                  }
                 }}
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-white hover:text-blue-600 text-white text-[10px] md:text-xs font-black uppercase tracking-widest px-5 py-2.5 rounded-sm transition-all active:scale-95 shadow-lg"
+                className="inline-flex items-center gap-1.5 bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/30 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full transition-all active:scale-95"
               >
-                Shop Now <ChevronRight className="w-4 h-4" />
+                Shop Now <ChevronRight className="w-3 h-3" />
               </a>
             </div>
           </div>
