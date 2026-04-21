@@ -46,16 +46,26 @@ const catalogData = [
             sku: "ISH-SLT-STK",
             name: "Vezor Tankless Instant Hot Shower for Salty Water + Silver Rainshower ",
             price: 22000,
-            mainImage: imgDemo1,
-            images: [imgDemo1],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776797271/showerttt_bvsmuo.webp",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776797287/showert_aoey6t.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776797271/showerttt_bvsmuo.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776797287/showert_aoey6t.webp",
+            ],
             desc: "Durable design specifically engineered for salty water regions. Features long-lasting heating elements.",
           },
           {
             sku: "ISH-SLT-PRM",
             name: "Swivel Head Instant hot shower for Fresh and Salty water ",
             price: 9000,
-            mainImage: imgDemo3,
-            images: [imgDemo3],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796818/swivelshower_w825js.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796818/swivelshower_w825js.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796809/12_txzung.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796818/swivelshower_w825js.jpg",
+            ],
             desc: "Premium grade shower with multi-temperature settings and enhanced durability for mineral-rich water.",
           },
         ],
@@ -363,11 +373,29 @@ const catalogData = [
         products: [
           {
             sku: "OUT-SOL-SET",
-            name: "Outdoor Solar Garden Light Set",
-            price: 3200,
-            mainImage: imgDemo1,
-            images: [imgDemo1],
-            desc: "Weatherproof garden lights for walkways and landscaping.",
+            name: "18 WATT LED Outdoor Waterproof Bulkhead Light |LED Outdoor Light",
+            price: 2500,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794208/outdoor-light-15s_dqfdmd.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794208/outdoor-light-15s_dqfdmd.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794180/outdoor-light-15sda_kbqtyo.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794191/outdoor-light-15sd_e1zmea.jpg",
+            ],
+            desc: "IP65 Waterproof Rating】IP65 waterproof rating, you can install it indoors or outdoors. No need to worry about rain or damp weather damaging the wall..",
+          },
+          {
+            sku: "OUT-SOL-SET2",
+            name: "Garden Post Light Outdoor Post Lights Post Pillar Sconce Outdoor Post Pillar Lights Post Pole Light Outdoor Pedestal Light E27 Patio Driveway Yard Lantern Lamp Fixture Street",
+            price: 4000,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794584/outdoor_gtmidn.png",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794584/outdoor_gtmidn.png",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794554/outdoor3_hlngff.png",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794564/outdoor2_vx7ean.jpg",
+            ],
+            desc: "Electric outdoor pillar light.",
           },
         ],
       },
@@ -375,12 +403,70 @@ const catalogData = [
         name: "Home Security Fixtures",
         products: [
           {
-            sku: "SEC-FLD-50",
-            name: "Motion Sensor Floodlight 50W",
-            price: 4500,
-            mainImage: imgDemo2,
-            images: [imgDemo2],
-            desc: "High-power floodlight with PIR sensor for perimeter security.",
+            sku: "OUT-SOL-SET22",
+            name: "LED motion sensor floodlight",
+            price: 2500,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794934/30w-motion-floodlight_j1qhvt.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794934/30w-motion-floodlight_j1qhvt.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794943/50w-motion_xbahru.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776794965/motion-sensor-1-1_x9mx7o.jpg",
+            ],
+            desc: "Water and dust proof.",
+          },
+          {
+            sku: "OUT-SOL-SE2",
+            name: "Black UK Plug Ringtones Chime Remote Control IP44 Waterproof Ring Wireless Doorbell for Indoor 120V/220V Door Bell for Home",
+            price: 1000,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776795349/doorbell_vdzhen.png",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776795349/doorbell_vdzhen.png",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776795372/nygfv_znmspc.webp",
+            ],
+            desc: "Wireless door bell,DIY installation..plug & play.",
+          },
+          {
+            sku: "OUT-SOL-S2",
+            name: "Motion sensor",
+            price: 1000,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776795705/motion-ser_cab4gq.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776795705/motion-ser_cab4gq.jpg",
+            ],
+            desc: "Detects moving objects,Easy to install.",
+          },
+        ],
+      },
+      {
+        name: "Solar Outdoor Lights",
+        products: [
+          {
+            sku: "OUT-SOL-SOLR",
+            name: "30W SOLAR LED FLOOD LIGHT Outdoor With Remote Controller",
+            price: 2500,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796164/floodliht_ec4kmv.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796164/floodliht_ec4kmv.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796196/floodle_knx9md.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796176/floodlit_oaoihi.jpg",
+            ],
+            desc: "Light automatically when its dark.",
+          },
+          {
+            sku: "OUT-SOL-SOLT2",
+            name: "Square Angle Solar Wall Light | TW",
+            price: 9500,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796456/solar-wall-light-7_pgffnz.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796456/solar-wall-light-7_pgffnz.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776796434/solar-wall-light-8-1_ultzyb.jpg",
+            ],
+            desc: "Wall mounted,Solar powered.",
           },
         ],
       },
