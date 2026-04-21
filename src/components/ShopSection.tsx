@@ -699,11 +699,11 @@ const ProductCard = ({
       </div>
     </div>
     <div className="p-3 flex flex-col flex-1">
-      <h3 className="text-[10px] font-bold text-gray-700 dark:text-neutral-300 line-clamp-2 leading-tight min-h-[1.5rem] mb-2 uppercase tracking-tight">
+      <h3 className="text-[10px] font-bold text-gray-700 dark:text-neutral-300 line-clamp-2 leading-tight min-h-[1.5rem] mb-2 tracking-tight">
         {product.name}
       </h3>
       <div className="flex items-center justify-between mt-auto">
-        <span className="font-black text-gray-950 dark:text-neutral-100 text-[11px] tracking-tighter">
+        <span className="font-black text-blue-600 text-[11px] tracking-tighter">
           KSh {product.price.toLocaleString()}
         </span>
         <button
