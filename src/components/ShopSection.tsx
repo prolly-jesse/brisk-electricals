@@ -217,11 +217,31 @@ const catalogData = [
         products: [
           {
             sku: "LGT-PROF-12",
-            name: "LED Profile Light 1.2M",
-            price: 3500,
-            mainImage: imgDemo1,
-            images: [imgDemo1],
-            desc: "Sleek aluminum profile for modern strip lighting integration.",
+            name: "50M 220-240V AC COB Aluminium Profile Strip Light |6500K | 3000K",
+            price: 300,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776790299/AC-aluminium-COB-strip-light-2_ltshx5.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776790299/AC-aluminium-COB-strip-light-2_ltshx5.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776790306/AC-aluminium-COB-strip-light-3_anwvfo.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776790319/AC-aluminium-COB-strip-light-5_mg1vnc.jpg",
+            ],
+
+            desc: "This COB (Chip-on-Board) LED Strip Light is a game-changer for lighting both indoor and outdoor spaces.",
+          },
+          {
+            sku: "LGT-PROF-122",
+            name: "COB Running Water 24v 10mm LED strip light |Single-Color Chasing Flowing Cob Led Strip",
+            price: 3000,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776790745/profile-light-q1w-600x600_yxdf43.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776790733/profile-light-q1w6_mg8kuj.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776790745/profile-light-q1w-600x600_yxdf43.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776790721/profile-light-q1w1_wm4d42.jpg",
+            ],
+
+            desc: "Runing water COB 10mm-24V-360D, IC WS2811.You will buy the power supply & controller separately.",
           },
         ],
       },
@@ -230,32 +250,106 @@ const catalogData = [
         products: [
           {
             sku: "BLB-LED-12",
-            name: "LED Bulb 12W – Warm White",
-            price: 350,
-            mainImage: imgDemo2,
-            images: [imgDemo2],
-            desc: "Energy-efficient 12W LED bulb with standard E27 base.",
+            name: "GU10 Bulb White | Warm White",
+            price: 250,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776791191/gu10-bulb-7_woa5uc.webp",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776791191/gu10-bulb-7_woa5uc.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776791203/gu10-bulb-6_e1wyn9.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776791222/gu10-bulb-2_cgurdx.jpg",
+            ],
+            desc: "Energy-efficient 7W LED bulb with standard base.",
           },
           {
-            sku: "BLB-FIL-E27",
-            name: "LED Filament Bulb – E27",
-            price: 550,
-            mainImage: imgDemo1,
-            images: [imgDemo1],
-            desc: "Vintage style filament bulb for decorative fixtures.",
+            sku: "BLB-LED-123",
+            name: "Energy saving ST 64 Edison Bulb |Warm White | White Light Edison Bulbs",
+            price: 300,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776791629/bulbb_vezxwt.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776791649/edison-bulb-2-1_wlvbc2.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776791629/bulbb_vezxwt.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776791636/blbr_rohrme.webp",
+            ],
+            desc: "Filament ST64 Edison Light Bulb is the perfect combination of vintage appeal and modern energy efficiency rating.",
+          },
+          {
+            sku: "BLB-LED-124",
+            name: "50W B22 Emergency Intelligent Bulb",
+            price: 1000,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792034/40w-50w_u192th.png",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792034/40w-50w_u192th.png",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792040/40w-50w-3_s5xbbu.webp",
+            ],
+            desc: "Emergency bulb.Stays on when there is a blackout,B22 holder",
+          },
+          {
+            sku: "BLB-LED-1244",
+            name: "Energy Saving G9 LED BULB 5W|Available in White & Warm White",
+            price: 300,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792333/g9-bulb-5_ww6v2c.png",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792333/g9-bulb-5_ww6v2c.png",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792350/g9-bulb-3_wo0he3.jpg",
+            ],
+            desc: "These are very small bulbs specific to certain light fixtures",
           },
         ],
       },
       {
-        name: "Spotlights",
+        name: "Spotlights, Tracklights & Downlights",
         products: [
           {
             sku: "LGT-SPOT-18",
-            name: "Recessed LED Downlight 18W",
-            price: 1500,
-            mainImage: imgDemo2,
-            images: [imgDemo2],
-            desc: "Flush mount spotlight for clean ceiling designs.",
+            name: "GU10 swivel Downlighter |Adjustable GU10 single downlighter",
+            price: 600,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792666/downlighter-2d_px6p84.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792666/downlighter-2d_px6p84.jpg",
+            ],
+            desc: "Available in black & white.",
+          },
+          {
+            sku: "LGT-SPOT-182",
+            name: "Black Surface LED Cabinet Lighting 5W",
+            price: 500,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792832/SALFORD-CO_xzwjz5.webp",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792832/SALFORD-CO_xzwjz5.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776792897/61fhkSSIL._AC_SX679__btvrkc.jpg",
+            ],
+            desc: "Available in black & white.",
+          },
+          {
+            sku: "LGT-SPOT-1822",
+            name: "7w Swivel LED Downlighters | Warm White | White Downlighter",
+            price: 500,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776793148/SALFORD-CO.-13_oecs2v.png",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776793148/SALFORD-CO.-13_oecs2v.png",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776793122/downligter-1_j4qhvr.jpg",
+            ],
+            desc: "Swivel down lighter.",
+          },
+          {
+            sku: "LGT-SPOT-14",
+            name: "LED Surface Mounted Track Light | Black | White Track light",
+            price: 1000,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776793498/surface-track-light-hj_dsqxyf.webp",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776793498/surface-track-light-hj_dsqxyf.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776793511/surface-track-light-4g_gb4gul.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776793525/surface-track-light-3_qhu7p3.webp",
+            ],
+            desc: "Surface mounted track light,Available in gold & black.",
           },
         ],
       },
