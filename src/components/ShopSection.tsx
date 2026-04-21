@@ -165,6 +165,48 @@ const catalogData = [
           },
         ],
       },
+      {
+        name: "Wall Lights",
+        products: [
+          {
+            sku: "LGT-CHND-665",
+            name: "Crystal Hourglass Wall Light Fixture Simple Style 6 Lights Gold Up and Down Wall Sconce Light ",
+            price: 5000,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784011/Wimgwll_xsuqd4.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784011/Wimgwll_xsuqd4.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784089/wlllight2_fr27xt.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784107/wlllight3_x5ajpu.jpg",
+            ],
+            desc: "High end finish.3 color display",
+          },
+          {
+            sku: "LGT-CHND-RNG54",
+            name: "Colorful LED Wall Lamp for Living Room TV Background | Creative Indoor Lamp",
+            price: 2500,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784980/walllihjt_q7y7n7.webp",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784980/walllihjt_q7y7n7.webp",
+            ],
+            desc: "Creative design, penetrates the modern design concept, creates a strong sense of space, has a strong artistic tone, ingenious carving quality, rational and modern atmosphere.",
+          },
+          {
+            sku: "LGT-CHND-6655",
+            name: "Black LED Linear Tube Wall Sconce Minimalist Strip Wall Lamp ",
+            price: 3500,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776785526/wall-light-7yf_yqo5qc.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776785547/wall-light-7yj_fmciol.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776785526/wall-light-7yf_yqo5qc.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776785430/wall-light-7ydl_a04rhw.webp",
+            ],
+            desc: "Contemporary minimalist style wall lamp, black/gold finish strip linear wall sconce LED wall pack light geometric lighting fitting kits, which can complement the decoration of the space and add more to your home decoration personality",
+          },
+        ],
+      },
     ],
   },
   {
