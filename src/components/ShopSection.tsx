@@ -698,14 +698,23 @@ const ProductCard = ({
         <Maximize2 className="w-3 h-3 text-blue-600" />
       </div>
     </div>
+
     <div className="p-3 flex flex-col flex-1">
-      <h3 className="text-[10px] font-bold text-gray-700 dark:text-neutral-300 line-clamp-2 leading-tight min-h-[1.5rem] mb-2 tracking-tight">
-        {product.name}
+      {/* Increased to 13px, added semi-bold and Title Case logic */}
+      <h3 className="text-[13px] font-semibold text-gray-800 dark:text-neutral-200 line-clamp-2 leading-snug min-h-[2.4rem] mb-3 tracking-tight">
+        {product.name
+          .toLowerCase()
+          .split(" ")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(" ")}
       </h3>
+
       <div className="flex items-center justify-between mt-auto">
-        <span className="font-black text-blue-600 text-[11px] tracking-tighter">
+        {/* Price is now 14px and bolder for better 'at-a-glance' shopping */}
+        <span className="font-black text-blue-600 dark:text-blue-400 text-[14px] tracking-tighter">
           KSh {product.price.toLocaleString()}
         </span>
+
         <button
           onClick={(e) => {
             e.stopPropagation();
