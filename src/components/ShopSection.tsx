@@ -16,6 +16,11 @@ import { useCart } from "@/contexts/CartContext";
 // --- 1. ASSET IMPORTS ---
 import imgDemo1 from "@/assets/imgdemo.jpg";
 import imgDemo2 from "@/assets/imgdemo2.jpg";
+import imgDemo3 from "@/assets/imgbrisk2.jpg";
+import imgDemo4 from "@/assets/topjet.jpg";
+import imgDemo5 from "@/assets/horizon22.jpg";
+import imgDemo6 from "@/assets/elementd.jpg";
+import imgDemo7 from "@/assets/Heating-Element-For-Horizon.jpg";
 
 // --- 2. FULL CATALOG DATA (RESTORED) ---
 const catalogData = [
@@ -26,19 +31,19 @@ const catalogData = [
         name: "Salty Water Showers",
         products: [
           {
-            sku: "ISH-SLT-STD",
-            name: "Salty Water Instant Shower – Standard",
-            price: 10500,
+            sku: "ISH-SLT-STK",
+            name: "Vezor Tankless Instant Hot Shower for Salty Water + Silver Rainshower ",
+            price: 22000,
             mainImage: imgDemo1,
-            images: [imgDemo1, imgDemo2],
+            images: [imgDemo1],
             desc: "Durable design specifically engineered for salty water regions. Features long-lasting heating elements.",
           },
           {
             sku: "ISH-SLT-PRM",
-            name: "Salty Water Instant Shower – Premium",
-            price: 13500,
-            mainImage: imgDemo2,
-            images: [imgDemo2, imgDemo1],
+            name: "Swivel Head Instant hot shower for Fresh and Salty water ",
+            price: 9000,
+            mainImage: imgDemo3,
+            images: [imgDemo3],
             desc: "Premium grade shower with multi-temperature settings and enhanced durability for mineral-rich water.",
           },
         ],
@@ -48,19 +53,48 @@ const catalogData = [
         products: [
           {
             sku: "ISH-FRSH-EC",
-            name: "Fresh Water Instant Shower – Economy",
+            name: "Fresh Water Lorenzetti Topjet",
             price: 10500,
-            mainImage: imgDemo1,
-            images: [imgDemo1],
+            mainImage: imgDemo4,
+            images: [imgDemo4],
             desc: "Efficient heating for fresh water systems. Quick installation and energy-saving.",
           },
           {
             sku: "ISH-FRSH-SV",
-            name: "Fresh Water Instant Shower – Swivel Head",
-            price: 12000,
+            name: "Fresh Water Horizon white instant shower ",
+            price: 1500,
+            mainImage: imgDemo5,
+            images: [imgDemo5],
+            desc: "Features a flexible swivel head for better coverage and modern bathroom aesthetics.",
+          },
+          {
+            sku: "ISH-SLT-STD",
+            name: "Grey Lorenzetti Bella Ducha 4t hot shower",
+            price: 2800,
             mainImage: imgDemo2,
             images: [imgDemo2],
-            desc: "Features a flexible swivel head for better coverage and modern bathroom aesthetics.",
+            desc: "Durable design specifically engineered for salty water regions. Features long-lasting heating elements.",
+          },
+        ],
+      },
+      {
+        name: "Shower Accessories",
+        products: [
+          {
+            sku: "ISH-SLT-STRR",
+            name: "Lorenzetti Bella Ducha 4t Replacement Heating Element ",
+            price: 1400,
+            mainImage: imgDemo6,
+            images: [imgDemo6],
+            desc: "Spare heating element for Ducha 4t Replacement Heating Element.",
+          },
+          {
+            sku: "ISH-SLT-PRMM",
+            name: "Horizon Heating Element ",
+            price: 300,
+            mainImage: imgDemo7,
+            images: [imgDemo7],
+            desc: "Spare heating element for horizon instant shower.",
           },
         ],
       },
