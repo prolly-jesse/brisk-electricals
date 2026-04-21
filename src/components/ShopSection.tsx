@@ -21,6 +21,9 @@ import imgDemo4 from "@/assets/topjet.jpg";
 import imgDemo5 from "@/assets/horizon22.jpg";
 import imgDemo6 from "@/assets/elementd.jpg";
 import imgDemo7 from "@/assets/Heating-Element-For-Horizon.jpg";
+import imgDemo8 from "@/assets/chand22.jpg";
+import imgDemo882 from "@/assets/chand223.jpg";
+import imgDemo883 from "@/assets/chands.jpg";
 
 // --- 2. FULL CATALOG DATA (RESTORED) ---
 const catalogData = [
@@ -108,11 +111,11 @@ const catalogData = [
         products: [
           {
             sku: "LGT-CHND-6",
-            name: "Crystal Chandelier – 6 Arm",
-            price: 18500,
-            mainImage: imgDemo1,
-            images: [imgDemo1, imgDemo2],
-            desc: "Elegant 6-arm crystal design. Ideal for living rooms and high-ceiling foyers.",
+            name: "600MM Modern Dandelion Crystal Ceiling Light Suitable for Dining Room, Living Room, Bedroom,Warm White",
+            price: 12500,
+            mainImage: imgDemo8,
+            images: [imgDemo882, imgDemo883],
+            desc: "Surface through advanced green paint treatment, environmental protection is conducive to health. Fine technology, not fade.Colorful lamp body to choose from, colorful and attractive, random combination, mix and match to meet various customer needs,G9 lamp, practical and easy to replace.The lamp uses 18pc G9 LED light source, which is energy-saving and power-saving, with warm brightness",
           },
           {
             sku: "LGT-CHND-RNG",
