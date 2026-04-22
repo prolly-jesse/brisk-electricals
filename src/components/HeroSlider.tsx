@@ -1,8 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import slideVoltage from "@/assets/slide-voltage-blue.jpg";
-import slideShower from "@/assets/slide-instant-power.jpg";
-import slideSolar from "@/assets/slide-solar.jpg";
 
 const slides = [
   {
@@ -10,21 +7,21 @@ const slides = [
       "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776804402/slide-voltage-blue_cla5tb.jpg",
     title: "SHOP WITH US",
     subtitle: "Premium Electrical Supplies for your Home & Office",
-    shopId: "cat-deco",
+    shopId: "decorative-lights",
   },
   {
     image:
       "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776804416/slide-instant-power_ma0erh.jpg",
     title: "HOT DEALS",
     subtitle: "Save big on our Instant Shower collection this month",
-    shopId: "cat-deco",
+    shopId: "decorative-lights",
   },
   {
     image:
       "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776804463/slide-solar_k2z2eg.jpg",
     title: "Solar Solutions",
     subtitle: "Reliable green energy for uninterrupted power",
-    shopId: "cat-deco",
+    shopId: "outdoor-lighting",
   },
 ];
 
