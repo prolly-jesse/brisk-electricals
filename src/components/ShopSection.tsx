@@ -663,19 +663,47 @@ const ShopSection = () => {
       "_blank"
     );
   };
+  // --- STATE FOR CAROUSEL ---
   const [currentImgIndex, setCurrentImgIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
+  // 1. Reset and Scroll (SAFE VERSION)
   useEffect(() => {
-    if (!selectedProduct || selectedProduct.images.length <= 1 || isPaused)
+    if (selectedProduct) {
+      setCurrentImgIndex(0);
+      window.scrollTo({ top: 0, behavior: "instant" });
+
+      // Push history state so back button works
+      window.history.pushState({ view: "detail" }, "");
+    }
+  }, [selectedProduct?.sku]); // Use SKU to trigger only on unique products
+
+  // 2. Auto-rotate (SAFE VERSION)
+  useEffect(() => {
+    // If no product, no images, or only 1 image, don't start the timer
+    if (
+      !selectedProduct?.images ||
+      selectedProduct.images.length <= 1 ||
+      isPaused
+    ) {
       return;
+    }
 
     const interval = setInterval(() => {
       setCurrentImgIndex((prev) => (prev + 1) % selectedProduct.images.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [selectedProduct, isPaused]);
+  }, [selectedProduct?.sku, isPaused]);
+
+  // 3. Browser Back Button listener
+  useEffect(() => {
+    const handlePopState = () => {
+      if (selectedProduct) setSelectedProduct(null);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, [selectedProduct]);
 
   // --- LOGIC: RELATED PRODUCTS BY CATEGORY ---
   const relatedProducts = useMemo(() => {
@@ -801,7 +829,13 @@ const ShopSection = () => {
             {/* Reduced from 12 to 8 */}
             <div className="flex items-center justify-between border-b dark:border-neutral-800 pb-3">
               <button
-                onClick={() => setSelectedProduct(null)}
+                onClick={() => {
+                  setSelectedProduct(null);
+                  // If we pushed a history state, we should go back one step
+                  if (window.history.state?.view === "detail") {
+                    window.history.back();
+                  }
+                }}
                 className="flex items-center gap-2 text-gray-400 dark:text-neutral-500 text-[10px] font-black uppercase tracking-widest hover:text-blue-600 transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" /> Back
