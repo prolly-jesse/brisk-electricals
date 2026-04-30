@@ -669,15 +669,25 @@ const ShopSection = () => {
 
   // 1. Reset and Scroll (SAFE VERSION)
   useEffect(() => {
-    if (selectedProduct) {
-      setCurrentImgIndex(0);
-      window.scrollTo({ top: 0, behavior: "instant" });
+    // Always reset image index first
+    setCurrentImgIndex(0);
 
-      // Push history state so back button works
+    // If a user explores a category OR selects a product, scroll to shop start
+    if (activeCategory || selectedProduct) {
+      const target = document.getElementById("scroll");
+      if (target) {
+        // This honors your scroll-mt-24 and looks smooth
+        target.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+
+    // Push history state so the phone's back button works (Detail view only)
+    if (selectedProduct) {
       window.history.pushState({ view: "detail" }, "");
     }
-  }, [selectedProduct?.sku]); // Use SKU to trigger only on unique products
-
+  }, [selectedProduct?.sku, activeCategory]); // Trigger on product OR category change
   // 2. Auto-rotate (SAFE VERSION)
   useEffect(() => {
     // If no product, no images, or only 1 image, don't start the timer
