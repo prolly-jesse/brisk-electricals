@@ -585,11 +585,40 @@ const catalogData = [
         products: [
           {
             sku: "ACC-STRP-5",
-            name: "LED Strip Light Kit 5M",
-            price: 2500,
-            mainImage: imgDemo1,
-            images: [imgDemo1],
-            desc: "Complete 5M strip kit with adhesive backing and power adapter.",
+            name: "5W B22 LED Frosted Bulb Pin Type Holder",
+            price: 200,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653032/Untitled-design-2025-06-16T095301.007_mqaf5w.png",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653032/Untitled-design-2025-06-16T095301.007_mqaf5w.png",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653030/71R3v7g2-UL._AC_SX679__ncffp4.jpg",
+            ],
+            desc: "Complete 5W BULB",
+          },
+          {
+            sku: "ACC-STRP-555",
+            name: "E27 LED Edison Dimmable Filament Bulb",
+            price: 450,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777654013/Untitled-design-2025-06-16T094452.424_iyjzu4.png",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777654013/Untitled-design-2025-06-16T094452.424_iyjzu4.png",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777654022/71Wctyvf9NL._AC_SL1500__uor7cl.jpg",
+            ],
+            desc: "Complete E27 LED Edison Dimmable Filament Bulb.",
+          },
+          {
+            sku: "ACC-STRP-56",
+            name: "C35 4Watts E14 6000K White LED Bulbs",
+            price: 250,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653033/Untitled-design-2025-06-16T085355.017_yjdmz6.png",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653033/Untitled-design-2025-06-16T085355.017_yjdmz6.png",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777652981/71enw4BCU7L._AC_SX679_-1_nh49vv.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777652981/71LCD2oR0BL._AC_SX679__ik3pqk.jpg",
+            ],
+            desc: "C35 4Watts E14 6000K White LED Bulbs.",
           },
         ],
       },
@@ -598,11 +627,27 @@ const catalogData = [
         products: [
           {
             sku: "CBL-2.5-100",
-            name: "Twin & Earth Cable 2.5mm – 100M",
-            price: 8500,
-            mainImage: imgDemo2,
-            images: [imgDemo2],
-            desc: "Standard 2.5mm electrical cable for household wiring.",
+            name: "Communication Cable",
+            price: 850,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653006/communication-cable-500x500-1_ezvnq9.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653006/communication-cable-500x500-1_ezvnq9.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653006/communication-cable-500x500-1_ezvnq9.jpg",
+            ],
+            desc: "Standard 100m cable for Communication.",
+          },
+          {
+            sku: "ACC-STRP-576",
+            name: "Electrical cables- Twin with Earth",
+            price: 8200,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777654757/twin-with-earth-cable-4_sbotaw.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777654757/twin-with-earth-cable-4_sbotaw.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777654764/Twin-with-earth_fgfaq2.png",
+            ],
+            desc: "Lifetime warranty.90m roll",
           },
         ],
       },
@@ -611,19 +656,27 @@ const catalogData = [
         products: [
           {
             sku: "CIR-MCB-20",
-            name: "MCB 20A Single Pole",
+            name: "Miniature Circuit Breaker(MCB)",
             price: 650,
-            mainImage: imgDemo1,
-            images: [imgDemo1],
-            desc: "Reliable circuit breaker for domestic protection.",
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653005/andeli-mcb_gietmy.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653005/andeli-mcb_gietmy.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653005/MCB_c39iw9.webp",
+            ],
+            desc: "Reliable circuit breaker for domestic protection.Easy to install",
           },
           {
             sku: "CIR-CU-12",
-            name: "Consumer Unit 12-Way",
-            price: 4500,
-            mainImage: imgDemo2,
-            images: [imgDemo2],
-            desc: "12-way distribution board for centralized circuit control.",
+            name: "Adjustable Voltage Protector",
+            price: 3500,
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777652983/12-2_skuzqx.webp",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777652983/12-2_skuzqx.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777653058/16-2_vy8spj.webp",
+            ],
+            desc: "12-way distribution board for centralized circuit control.100A rating.Protects circuit against over/under voltage,power back surges and voltage dips",
           },
         ],
       },
