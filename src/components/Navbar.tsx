@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Zap, Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import BriskLogo from "@/assets/logobrisk2.png";
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
@@ -36,7 +36,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center group-hover:border-primary/60 transition-colors duration-300">
               <img
-                src={BriskLogo}
+                src="https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453426/logobrisk2_nu3xt4.png"
                 alt="Brisk logo"
                 className="w-full h-full object-contain scale-[2]"
               />
