@@ -77,24 +77,33 @@ const catalogData = [
             sku: "ISH-FRSH-EC",
             name: "Fresh Water Lorenzetti Topjet",
             price: 10500,
-            mainImage: imgDemo4,
-            images: [imgDemo4],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453432/topjet_ep9ntu.png",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453432/topjet_ep9ntu.png",
+            ],
             desc: "Efficient heating for fresh water systems. Quick installation and energy-saving.",
           },
           {
             sku: "ISH-FRSH-SV",
             name: "Fresh Water Horizon white instant shower ",
             price: 1500,
-            mainImage: imgDemo5,
-            images: [imgDemo5],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453428/horizon22_urxpsi.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453428/horizon22_urxpsi.jpg",
+            ],
             desc: "Features a flexible swivel head for better coverage and modern bathroom aesthetics.",
           },
           {
             sku: "ISH-SLT-STD",
             name: "Grey Lorenzetti Bella Ducha 4t hot shower",
             price: 2800,
-            mainImage: imgDemo2,
-            images: [imgDemo2],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453436/imgdemo2_sae2xr.png",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453436/imgdemo2_sae2xr.png",
+            ],
             desc: "Durable design specifically engineered for salty water regions. Features long-lasting heating elements.",
           },
         ],
@@ -106,16 +115,22 @@ const catalogData = [
             sku: "ISH-SLT-STRR",
             name: "Lorenzetti Bella Ducha 4t Replacement Heating Element ",
             price: 1400,
-            mainImage: imgDemo6,
-            images: [imgDemo6],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453423/elementd_pfwz2u.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453423/elementd_pfwz2u.jpg",
+            ],
             desc: "Spare heating element for Ducha 4t Replacement Heating Element.",
           },
           {
             sku: "ISH-SLT-PRMM",
             name: "Horizon Heating Element ",
             price: 300,
-            mainImage: imgDemo7,
-            images: [imgDemo7],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453424/Heating-Element-For-Horizon_xefgod.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453424/Heating-Element-For-Horizon_xefgod.jpg",
+            ],
             desc: "Spare heating element for horizon instant shower.",
           },
         ],
@@ -132,24 +147,36 @@ const catalogData = [
             sku: "LGT-CHND-6",
             name: "600MM Modern Dandelion Crystal Ceiling Light Suitable for Dining Room, Living Room, Bedroom,Warm White",
             price: 12500,
-            mainImage: imgDemo8,
-            images: [imgDemo882, imgDemo883],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453421/chand22_y01ujx.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453423/chands_cvcycu.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453423/chand223_ynycey.jpg",
+            ],
             desc: "Surface through advanced green paint treatment, environmental protection is conducive to health. Fine technology, not fade.Colorful lamp body to choose from, colorful and attractive, random combination, mix and match to meet various customer needs,G9 lamp, practical and easy to replace.The lamp uses 18pc G9 LED light source, which is energy-saving and power-saving, with warm brightness",
           },
           {
             sku: "LGT-CHND-RNG",
             name: "Modern Tree Branch Crystal Chandelier Luxury Gold Crystal Pendant Lighting 30″ Contemporary 10-Light Chandeliers for Dining Room Kitchen Bedroom Living Room",
             price: 18200,
-            mainImage: imgDemo9,
-            images: [imgDemo992, imgDemo993],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453421/chand9_ih0mc2.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453423/chand993_hlpxss.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453426/chand992_nh6ocn.jpg",
+            ],
             desc: "Modern Tree Branch Crystal Chandelier: The surface of the chandelier is completed by metal plating process, corrosion resistance, rust prevention, and easy installation. The gold stems are thickened and encrypted, and the branches can be adjusted manually. Sparkling crystals are strung across the branches of this light fixture. Crystal Tree branch chandelier lighting is perfect for luxury and it helps to create a luxurious and vibrant atmosphere in the room.Specification: AC110v. The diameter of the lamp body is 23.6 inches, and the height of the lamp is adjustable from 20 inches to 78.7 inches. After assembling all the branches, you simply hang the crystals on the branches and gently adjust each branch to achieve the desired effect. Vaulted or slanted ceilings are compatible.",
           },
           {
             sku: "LGT-CHND-667",
             name: "3 rings Gold LED chandelier | LED living room chandelier ",
             price: 6000,
-            mainImage: imgDemo92,
-            images: [imgDemo93, imgDemo94],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453425/ledchnd224_rrys6z.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453425/ledchnd224_rrys6z.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453424/ledchnd223_ykq8v0.jpg",
+            ],
             desc: "LED chandelier.Easy to instal.We deliver & install at a fee",
           },
         ],
@@ -161,16 +188,24 @@ const catalogData = [
             sku: "LGT-CHND-66",
             name: "2X LED Mounted Ceiling Lamp Decorative Lights for Hallway Square Warm Lights | Home & Garden ",
             price: 2000,
-            mainImage: imgDemop2,
-            images: [imgDemop3, imgDemop4],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453427/pendnt22_nneour.webp",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453427/pendnt22_nneour.webp",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453442/pndt223_jor34t.png",
+            ],
             desc: "Elegant ceiling lamp ceiling fixture, perfect for any interior style.It has 5-10m² Lighting Area, with integrated LED lights, the light is cool and crisp without flicker.",
           },
           {
             sku: "LGT-CHND-RNG5",
             name: "Daphne Gold Mesh LED Pendant Light",
             price: 6000,
-            mainImage: imgDemop5,
-            images: [imgDemop5],
+            mainImage:
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453425/ledchnd224_rrys6z.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453425/ledchnd224_rrys6z.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1777453424/ledchnd223_ykq8v0.jpg",
+            ],
             desc: "Gold Mesh LED Pendant Light.",
           },
         ],
@@ -183,10 +218,10 @@ const catalogData = [
             name: "Crystal Hourglass Wall Light Fixture Simple Style 6 Lights Gold Up and Down Wall Sconce Light ",
             price: 5000,
             mainImage:
-              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784011/Wimgwll_xsuqd4.jpg",
-            images: [
-              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784011/Wimgwll_xsuqd4.jpg",
               "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784089/wlllight2_fr27xt.jpg",
+            images: [
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784089/wlllight2_fr27xt.jpg",
+              "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784011/Wimgwll_xsuqd4.jpg",
               "https://res.cloudinary.com/dcpqn8ecp/image/upload/v1776784107/wlllight3_x5ajpu.jpg",
             ],
             desc: "High end finish.3 color display",
